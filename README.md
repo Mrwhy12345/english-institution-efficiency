@@ -178,3 +178,14 @@ flowchart LR
 - 责任人与更新频率
 - 权限和隐私要求
 - 核心指标计算口径
+
+## 十、设计文档
+
+- [GitHub协作与发布规范](docs/github-collaboration-workflow.md)：固定提交范围、安全预检、验证、提交、推送、PR和接力方法。
+- [数据库内容操作规范](database/operations/README.md)：固定root结构操作、读写账号脚本执行和本机审计留痕。
+- [Cyana最小教学数据基座：采纳建议](docs/cyana-data-foundation-adoption-brief.md)：面向机构负责人的一页式方案摘要、验证证据和两周试点建议。
+- [Cyana教学-反馈数据基座采纳建议PDF](output/pdf/cyana-data-foundation-adoption-brief.pdf)：适合向机构负责人展示和转发的六页正式版本。
+- [2026-08-03工作小结与接力说明](docs/2026-08-03-work-handoff.md)：记录数据库现状、ER验证方法、模拟结果、修复记录和后续操作入口。
+- [测评与反馈最小数据模型](docs/assessment-feedback-minimal-data-model.md)：使用最小化建表原则、ER 关系图、字段数据字典和指标血缘矩阵，论证测评与反馈的数据结构。
+- [测评与反馈数据设计完整交互版](docs/assessment-feedback-data-design.html)：支持一版看全，以及结构关系、字段字典、指标验证和学员实例分层阅读。
+- [最小数据基座ER论证](docs/minimal-data-foundation-er.html)：压缩为10张业务表加1张结构治理表，并说明PDF验证、压缩下限与未来拆表条件。

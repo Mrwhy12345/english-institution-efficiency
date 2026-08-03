@@ -1,0 +1,20 @@
+-- operation: 新增/修改/删除业务数据
+-- purpose: <说明业务目的>
+-- source: <说明文件、截图或用户确认来源>
+-- scope: <列出学生、任务、提交或其他明确ID>
+-- idempotency: <说明能否重复执行>
+-- rollback: <说明回滚方法>
+-- verify_script: <对应验证SQL路径>
+
+USE `inst_cyana`;
+
+SELECT CURRENT_USER() AS executed_by, NOW(3) AS started_at;
+
+START TRANSACTION;
+
+-- 在这里放置有明确范围的INSERT、UPDATE或DELETE。
+-- 禁止无WHERE条件的UPDATE或DELETE。
+
+COMMIT;
+
+SELECT NOW(3) AS completed_at;

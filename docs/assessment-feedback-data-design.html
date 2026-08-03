@@ -1,0 +1,1457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Data Model Complete</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Data Model Complete" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Data Model Complete&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --red: light-dark(rgb(186 38 35), rgb(250 66 62));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;data-model-complete&quot;&gt;
+  &lt;style&gt;
+    #data-model-complete { color: var(--foreground); }
+    #data-model-complete .dmc-lead { margin: 0 0 14px; color: var(--muted-foreground); }
+    #data-model-complete .dmc-section { margin-top: 26px; }
+    #data-model-complete .dmc-section &gt; h2 { margin-bottom: 6px; }
+    #data-model-complete .dmc-caption { margin: 0 0 12px; color: var(--muted-foreground); }
+    #data-model-complete .dmc-diagram-wrap { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(230px, .8fr); gap: 16px; align-items: start; }
+    #data-model-complete .dmc-diagram { min-width: 0; }
+    #data-model-complete .dmc-diagram svg { display: block; width: 100%; height: auto; }
+    #data-model-complete .dmc-edge { stroke: var(--border); stroke-width: 1.5; fill: none; }
+    #data-model-complete .dmc-edge.active { stroke: var(--viz-series-1); stroke-width: 3; }
+    #data-model-complete .dmc-edge-label { fill: var(--muted-foreground); font-size: 11px; text-anchor: middle; }
+    #data-model-complete .dmc-node { cursor: pointer; }
+    #data-model-complete .dmc-node rect { fill: color-mix(in srgb, var(--muted) 72%, transparent); stroke: var(--border); stroke-width: 1; rx: 8; }
+    #data-model-complete .dmc-node.master rect { fill: color-mix(in srgb, var(--viz-series-2) 14%, transparent); }
+    #data-model-complete .dmc-node.fact rect { fill: color-mix(in srgb, var(--viz-series-1) 14%, transparent); }
+    #data-model-complete .dmc-node.output rect { fill: color-mix(in srgb, var(--viz-series-3) 14%, transparent); }
+    #data-model-complete .dmc-node.active rect { stroke: var(--viz-series-1); stroke-width: 3; }
+    #data-model-complete .dmc-node text { fill: var(--foreground); text-anchor: middle; pointer-events: none; font-weight: 500; }
+    #data-model-complete .dmc-node .sub { fill: var(--muted-foreground); font-size: 10px; font-weight: 400; }
+    #data-model-complete .dmc-lane { fill: var(--muted-foreground); font-size: 11px; font-weight: 500; }
+    #data-model-complete .dmc-detail-title { margin: 0 0 4px; }
+    #data-model-complete .dmc-detail-grain { color: var(--muted-foreground); margin-bottom: 10px; }
+    #data-model-complete .dmc-detail-list { margin: 0; padding-left: 18px; }
+    #data-model-complete .dmc-detail-list li { margin: 5px 0; }
+    #data-model-complete .dmc-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; color: var(--muted-foreground); font-size: 12px; }
+    #data-model-complete .dmc-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+    #data-model-complete .dmc-dot.master { background: var(--viz-series-2); }
+    #data-model-complete .dmc-dot.fact { background: var(--viz-series-1); }
+    #data-model-complete .dmc-dot.output { background: var(--viz-series-3); }
+    #data-model-complete .dmc-story { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+    #data-model-complete .dmc-step { border-top: 3px solid var(--border); padding-top: 8px; }
+    #data-model-complete .dmc-step strong { display: block; margin-bottom: 4px; }
+    #data-model-complete .dmc-step span { color: var(--muted-foreground); }
+    #data-model-complete .dmc-rule { border-left: 3px solid var(--viz-series-1); padding-left: 12px; margin: 12px 0; }
+    #data-model-complete .dmc-table-title { margin: 22px 0 4px; }
+    #data-model-complete .dmc-table-grain { color: var(--muted-foreground); margin: 0 0 8px; }
+    #data-model-complete .dmc-pk { color: var(--foreground); font-weight: 500; }
+    #data-model-complete .dmc-fk { color: var(--foreground); text-decoration: underline; text-decoration-color: var(--viz-series-2); text-underline-offset: 3px; }
+    #data-model-complete .dmc-hidden { display: none; }
+    #data-model-complete .dmc-count { color: var(--muted-foreground); margin-left: 6px; }
+    #data-model-complete .dmc-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    #data-model-complete .dmc-principle { border-top: 2px solid var(--border); padding-top: 8px; }
+    #data-model-complete .dmc-deploy-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+    #data-model-complete .dmc-deploy-group { border-top: 3px solid var(--border); padding-top: 8px; }
+    #data-model-complete .dmc-deploy-group strong { display: block; margin-bottom: 6px; }
+    #data-model-complete .dmc-deploy-group code { display: block; margin: 4px 0; white-space: normal; }
+    #data-model-complete code { white-space: nowrap; }
+    @media (max-width: 700px) {
+      #data-model-complete .dmc-diagram-wrap { grid-template-columns: 1fr; }
+      #data-model-complete .dmc-story, #data-model-complete .dmc-principles, #data-model-complete .dmc-deploy-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      #data-model-complete .viz-controls { display: none; }
+      #data-model-complete [data-panel] { display: block !important; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;viz-controls&quot; role=&quot;tablist&quot; aria-label=&quot;数据设计视图&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; role=&quot;tab&quot; data-tab=&quot;all&quot; aria-selected=&quot;true&quot;&gt;一版看全&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;structure&quot; aria-selected=&quot;false&quot;&gt;结构关系&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;deployment&quot; aria-selected=&quot;false&quot;&gt;部署ER（18表）&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;dictionary&quot; aria-selected=&quot;false&quot;&gt;字段字典&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;validation&quot; aria-selected=&quot;false&quot;&gt;指标验证&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;example&quot; aria-selected=&quot;false&quot;&gt;学员实例&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;p class=&quot;dmc-lead&quot;&gt;默认“一版看全”展开全部内容；“结构关系”展示核心业务模型，“部署ER”解释为什么实际MySQL中是18张表。打印时始终展开全部。&lt;/p&gt;
+
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;structure&quot;&gt;
+    &lt;h2&gt;1. 设计边界与工程原则&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;核心业务视图由六类主数据与八张领域业务表组成，共14张概念表；部署视图另外显式表达家庭、多对多关系与结构版本。&lt;/p&gt;
+    &lt;div class=&quot;dmc-principles&quot;&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;一种事实一张表&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;测评定义、学员参加、逐题作答不能混在同一行。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;一行只有一个粒度&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;先说清“一行代表什么”，再决定字段。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;关系靠编号，不靠名称&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;主键唯一识别，外键负责连接和约束。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;先保存原始事实&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;能力掌握度由逐题得分推导，不急于建立汇总表。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;多对多必须显式解决&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;测评和题目通过测评题目表连接。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;未经证实的复杂度延后&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;补考、多能力点、报告审批出现后再拆表。&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;本轮结构调整&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;改动类型&lt;/th&gt;&lt;th&gt;对象&lt;/th&gt;&lt;th&gt;理由&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;新增表&lt;/td&gt;&lt;td&gt;&lt;code&gt;learning_resource&lt;/code&gt;、&lt;code&gt;content_unit&lt;/code&gt;&lt;/td&gt;&lt;td&gt;把文件来源与19个可复用阅读单元分开保存&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;新增字段&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;保存作业目的、布置、截止、交付方式和评分规则&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;新增字段&lt;/td&gt;&lt;td&gt;&lt;code&gt;question&lt;/code&gt;&lt;/td&gt;&lt;td&gt;保存文章关联、选项、回答类型、评分方式、量规和页码&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;新增字段&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_attempt&lt;/code&gt;、&lt;code&gt;student_answer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;支持纸质照片提交、逐题图片和人工评分状态&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;不新增&lt;/td&gt;&lt;td&gt;&lt;code&gt;is_late&lt;/code&gt;、能力结果表&lt;/td&gt;&lt;td&gt;逾期和能力掌握度均可由原始事实计算，避免重复&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;dmc-diagram-wrap dmc-section&quot;&gt;
+      &lt;div class=&quot;dmc-diagram&quot;&gt;
+        &lt;svg viewBox=&quot;0 0 820 555&quot; role=&quot;img&quot; aria-labelledby=&quot;dmc-svg-title dmc-svg-desc&quot;&gt;
+          &lt;title id=&quot;dmc-svg-title&quot;&gt;教学资源、作业、测评与反馈完整数据模型&lt;/title&gt;
+          &lt;desc id=&quot;dmc-svg-desc&quot;&gt;展示教学资源、内容单元、题目、测评、学员答题和反馈之间的可追溯关系。&lt;/desc&gt;
+          &lt;defs&gt;
+            &lt;marker id=&quot;dmc-arrow&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;6&quot; markerHeight=&quot;6&quot; orient=&quot;auto-start-reverse&quot;&gt;&lt;path d=&quot;M0 0L10 5L0 10z&quot; fill=&quot;var(--border)&quot;&gt;&lt;/path&gt;&lt;/marker&gt;
+            &lt;marker id=&quot;dmc-arrow-active&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;6&quot; markerHeight=&quot;6&quot; orient=&quot;auto-start-reverse&quot;&gt;&lt;path d=&quot;M0 0L10 5L0 10z&quot; fill=&quot;var(--viz-series-1)&quot;&gt;&lt;/path&gt;&lt;/marker&gt;
+          &lt;/defs&gt;
+          &lt;text class=&quot;dmc-lane&quot; x=&quot;14&quot; y=&quot;25&quot;&gt;内容层：文件拆成可复用单元与题目&lt;/text&gt;
+          &lt;text class=&quot;dmc-lane&quot; x=&quot;14&quot; y=&quot;185&quot;&gt;布置层：从题库组成一次作业或测评&lt;/text&gt;
+          &lt;text class=&quot;dmc-lane&quot; x=&quot;14&quot; y=&quot;330&quot;&gt;事实层：学员真实提交与逐题结果&lt;/text&gt;
+          &lt;text class=&quot;dmc-lane&quot; x=&quot;14&quot; y=&quot;470&quot;&gt;应用层：反馈与后续行动&lt;/text&gt;
+
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;resource-content&quot; d=&quot;M170 78H220&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;195&quot; y=&quot;68&quot;&gt;1:N&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;content-question&quot; d=&quot;M380 78H445&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;412&quot; y=&quot;68&quot;&gt;1:N&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;skill-question&quot; d=&quot;M650 82H575&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;question-assessment_question&quot; d=&quot;M510 106V150H385V205&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;assessment-assessment_question&quot; d=&quot;M205 233H290&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;247&quot; y=&quot;223&quot;&gt;1:N&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;assessment-attempt&quot; d=&quot;M130 261V350&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;151&quot; y=&quot;307&quot;&gt;产生&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;student-attempt&quot; d=&quot;M70 383H90&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;attempt-answer&quot; d=&quot;M240 383H365&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;302&quot; y=&quot;373&quot;&gt;一题一行&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;assessment_question-answer&quot; d=&quot;M385 261V318H450V350&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;attempt-feedback&quot; d=&quot;M165 416V496H315&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;dmc-edge-label&quot; x=&quot;238&quot; y=&quot;486&quot;&gt;形成反馈&lt;/text&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;guardian-feedback&quot; d=&quot;M620 517H515&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;dmc-edge&quot; data-edge=&quot;staff-feedback&quot; d=&quot;M680 465V442H480V489&quot; marker-end=&quot;url(#dmc-arrow)&quot;&gt;&lt;/path&gt;
+
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;resource&quot; transform=&quot;translate(20 50)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;56&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;24&quot;&gt;教学资源&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;42&quot;&gt;learning_resource&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;content&quot; transform=&quot;translate(220 50)&quot;&gt;&lt;rect width=&quot;160&quot; height=&quot;56&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;80&quot; y=&quot;24&quot;&gt;内容单元&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;80&quot; y=&quot;42&quot;&gt;content_unit&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;question&quot; transform=&quot;translate(445 50)&quot;&gt;&lt;rect width=&quot;130&quot; height=&quot;56&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;65&quot; y=&quot;24&quot;&gt;题目&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;65&quot; y=&quot;42&quot;&gt;question&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node master&quot; data-node=&quot;skill&quot; transform=&quot;translate(650 58)&quot;&gt;&lt;rect width=&quot;145&quot; height=&quot;48&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;72.5&quot; y=&quot;29&quot;&gt;能力点主数据&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;assessment&quot; transform=&quot;translate(55 205)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;56&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;24&quot;&gt;作业／测评&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;42&quot;&gt;assessment&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;assessment_question&quot; transform=&quot;translate(290 205)&quot;&gt;&lt;rect width=&quot;190&quot; height=&quot;56&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;95&quot; y=&quot;24&quot;&gt;测评题目&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;95&quot; y=&quot;42&quot;&gt;assessment_question&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node master&quot; data-node=&quot;student&quot; transform=&quot;translate(10 359)&quot;&gt;&lt;rect width=&quot;60&quot; height=&quot;48&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;30&quot; y=&quot;29&quot;&gt;学员&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;attempt&quot; transform=&quot;translate(90 350)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;66&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;27&quot;&gt;学员作业&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;47&quot;&gt;assessment_attempt&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node fact&quot; data-node=&quot;answer&quot; transform=&quot;translate(365 350)&quot;&gt;&lt;rect width=&quot;170&quot; height=&quot;66&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;85&quot; y=&quot;27&quot;&gt;学员答题&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;85&quot; y=&quot;47&quot;&gt;student_answer&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node output&quot; data-node=&quot;feedback&quot; transform=&quot;translate(315 489)&quot;&gt;&lt;rect width=&quot;200&quot; height=&quot;58&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;100&quot; y=&quot;25&quot;&gt;反馈记录&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;100&quot; y=&quot;44&quot;&gt;feedback&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node master&quot; data-node=&quot;guardian&quot; transform=&quot;translate(620 495)&quot;&gt;&lt;rect width=&quot;92&quot; height=&quot;44&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;46&quot; y=&quot;27&quot;&gt;家长&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;dmc-node master&quot; data-node=&quot;staff&quot; transform=&quot;translate(635 421)&quot;&gt;&lt;rect width=&quot;90&quot; height=&quot;44&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;45&quot; y=&quot;27&quot;&gt;员工&lt;/text&gt;&lt;/g&gt;
+        &lt;/svg&gt;
+        &lt;div class=&quot;dmc-legend&quot;&gt;&lt;span&gt;&lt;i class=&quot;dmc-dot master&quot;&gt;&lt;/i&gt;已有主数据&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;dmc-dot fact&quot;&gt;&lt;/i&gt;新增业务表&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;dmc-dot output&quot;&gt;&lt;/i&gt;反馈与行动&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;section class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;h3 class=&quot;dmc-detail-title&quot; id=&quot;dmc-detail-title&quot;&gt;测评 assessment&lt;/h3&gt;
+        &lt;div class=&quot;dmc-detail-grain&quot; id=&quot;dmc-detail-grain&quot;&gt;一行 = 一次可发布的测评&lt;/div&gt;
+        &lt;ul class=&quot;dmc-detail-list&quot; id=&quot;dmc-detail-list&quot;&gt;&lt;/ul&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;关系基数&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;关系&lt;/th&gt;&lt;th&gt;基数&lt;/th&gt;&lt;th&gt;设计依据&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-relations&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;第二轮 ER 验证结论&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;验证项&lt;/th&gt;&lt;th&gt;结论&lt;/th&gt;&lt;th&gt;工程处理&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-erchecks&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;deployment&quot;&gt;
+    &lt;h2&gt;2. MySQL部署ER：为什么是18张表&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;14张概念表用于理解业务；部署时增加4张物理必需表。没有把招生、订单、课消、排课或财务提前塞进当前版本。&lt;/p&gt;
+
+    &lt;div class=&quot;dmc-deploy-grid&quot;&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;结构治理 · 1张&lt;/strong&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;span class=&quot;text-muted&quot;&gt;只记录数据库结构版本，不属于业务ER。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;客户与组织 · 9张&lt;/strong&gt;&lt;code&gt;family&lt;/code&gt;&lt;code&gt;guardian&lt;/code&gt;&lt;code&gt;student&lt;/code&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;code&gt;staff&lt;/code&gt;&lt;code&gt;course&lt;/code&gt;&lt;code&gt;class_group&lt;/code&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;code&gt;skill_point&lt;/code&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;内容与测评 · 7张&lt;/strong&gt;&lt;code&gt;learning_resource&lt;/code&gt;&lt;code&gt;content_unit&lt;/code&gt;&lt;code&gt;question&lt;/code&gt;&lt;code&gt;assessment&lt;/code&gt;&lt;code&gt;assessment_question&lt;/code&gt;&lt;code&gt;assessment_attempt&lt;/code&gt;&lt;code&gt;student_answer&lt;/code&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;反馈闭环 · 1张&lt;/strong&gt;&lt;code&gt;feedback&lt;/code&gt;&lt;span class=&quot;text-muted&quot;&gt;关联学员作业、家长与负责人。&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;从14张到18张的逐项论证&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;新增表&lt;/th&gt;&lt;th&gt;一行代表什么&lt;/th&gt;&lt;th&gt;不增加会发生什么&lt;/th&gt;&lt;th&gt;结论&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;family&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个家庭客户单元&lt;/td&gt;&lt;td&gt;兄弟姐妹的来源、负责人和家庭状态会在学员、家长中重复&lt;/td&gt;&lt;td&gt;保留，业务主数据&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员与一名家长的一种关系&lt;/td&gt;&lt;td&gt;无法表达多家长、多孩子、主要联系人和反馈接收权限&lt;/td&gt;&lt;td&gt;保留，必要多对多表&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员的一段入班记录&lt;/td&gt;&lt;td&gt;无法表达转班、退班、复班和历史班级归属&lt;/td&gt;&lt;td&gt;保留，必要关系历史表&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一次已应用的结构版本&lt;/td&gt;&lt;td&gt;每机构一库后，无法判断哪些机构库完成了哪次升级&lt;/td&gt;&lt;td&gt;保留，物理治理表&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;18张表的主外键登记册&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;表&lt;/th&gt;&lt;th&gt;粒度&lt;/th&gt;&lt;th&gt;主键&lt;/th&gt;&lt;th&gt;主要外键&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个结构版本&lt;/td&gt;&lt;td&gt;&lt;code&gt;version_no&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;&lt;code&gt;family&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个家庭&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;owner_staff_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;&lt;code&gt;guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名家长&lt;/td&gt;&lt;td&gt;&lt;code&gt;guardian_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;&lt;code&gt;student&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一条学员家长关系&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_id + guardian_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;学员、家长&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;&lt;code&gt;staff&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名员工&lt;/td&gt;&lt;td&gt;&lt;code&gt;staff_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;&lt;code&gt;course&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个课程产品&lt;/td&gt;&lt;td&gt;&lt;code&gt;course_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_group&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个教学班级&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;课程、主教教师&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一段学员入班历史&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_enrollment_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;班级、学员&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;&lt;code&gt;skill_point&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个能力点&lt;/td&gt;&lt;td&gt;&lt;code&gt;skill_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;parent_skill_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;&lt;code&gt;learning_resource&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个资源文件版本&lt;/td&gt;&lt;td&gt;&lt;code&gt;resource_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_unit&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个可复用内容单元&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_unit_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;教学资源&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;&lt;code&gt;question&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一道原子题目&lt;/td&gt;&lt;td&gt;&lt;code&gt;question_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;内容单元、能力点&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一次作业或测评&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;课程、班级、创建人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_question&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一道题在一次作业中的使用&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_question_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;测评、题目&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_attempt&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员的一次提交&lt;/td&gt;&lt;td&gt;&lt;code&gt;attempt_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;测评、学员、评分人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_answer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;学员对一道题的最终答案&lt;/td&gt;&lt;td&gt;&lt;code&gt;answer_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;提交、测评题目、评分人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;&lt;code&gt;feedback&lt;/code&gt;&lt;/td&gt;&lt;td&gt;针对一次提交的一次反馈&lt;/td&gt;&lt;td&gt;&lt;code&gt;feedback_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;提交、家长、负责人&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;关键关系链&lt;/h3&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;家庭链：&lt;/strong&gt; family → guardian／student → student_guardian。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;班级链：&lt;/strong&gt; course → class_group → class_enrollment → student。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;作业链：&lt;/strong&gt; learning_resource → content_unit → question → assessment_question → assessment。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;结果链：&lt;/strong&gt; student → assessment_attempt → student_answer → feedback → guardian。&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;dictionary&quot;&gt;
+    &lt;h2&gt;3. 核心领域字段字典 &lt;span class=&quot;dmc-count&quot;&gt;8 张领域表，107 个字段&lt;/span&gt;&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;&lt;span class=&quot;dmc-pk&quot;&gt;PK&lt;/span&gt; 是本行唯一编号；&lt;span class=&quot;dmc-fk&quot;&gt;FK&lt;/span&gt; 是指向另一张表的编号。字段类型为工程建议，可按实际数据库调整。&lt;/p&gt;
+    &lt;div id=&quot;dmc-dictionaries&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;validation&quot;&gt;
+    &lt;h2&gt;4. 指标血缘与一致性验证&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;用“能否从原始字段稳定计算”反向验证模型是否足够，而不是为想象中的需求提前建表。&lt;/p&gt;
+    &lt;h3&gt;指标血缘&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;指标&lt;/th&gt;&lt;th&gt;原始字段与计算路径&lt;/th&gt;&lt;th&gt;结果&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-metrics&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;数据一致性规则&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;规则&lt;/th&gt;&lt;th&gt;校验表达&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-checks&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;何时才应该继续拆表&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;真实触发条件&lt;/th&gt;&lt;th&gt;届时扩展&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-expansions&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;example&quot;&gt;
+    &lt;h2&gt;5. 一个学员实例：从测评到反馈&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;以下用真实 Level D 阅读作业的“Look Out!”单元展示编号怎样从PDF来源贯穿到家长反馈。&lt;/p&gt;
+    &lt;div class=&quot;dmc-story&quot;&gt;
+      &lt;div class=&quot;dmc-step&quot;&gt;&lt;strong&gt;① 拆解资源&lt;/strong&gt;&lt;span&gt;&lt;code&gt;RES001&lt;/code&gt; 中建立内容单元 &lt;code&gt;CU001&lt;/code&gt;。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-step&quot;&gt;&lt;strong&gt;② 布置作业&lt;/strong&gt;&lt;span&gt;&lt;code&gt;HW001&lt;/code&gt; 引用 &lt;code&gt;CU001&lt;/code&gt; 下的题目。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-step&quot;&gt;&lt;strong&gt;③ 学员提交&lt;/strong&gt;&lt;span&gt;学员 &lt;code&gt;S001&lt;/code&gt; 产生作业记录 &lt;code&gt;T001&lt;/code&gt; 和逐题答案。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-step&quot;&gt;&lt;strong&gt;④ 形成反馈&lt;/strong&gt;&lt;span&gt;根据 &lt;code&gt;T001&lt;/code&gt; 生成反馈 &lt;code&gt;F001&lt;/code&gt;。&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;完整追溯链：&lt;/strong&gt; PDF &lt;code&gt;RES001&lt;/code&gt; → 阅读单元 &lt;code&gt;CU001&lt;/code&gt; → 题目 → 作业 &lt;code&gt;HW001&lt;/code&gt; → 学员提交 &lt;code&gt;T001&lt;/code&gt; → 逐题答案 → 能力点 → 反馈 &lt;code&gt;F001&lt;/code&gt;。&lt;/div&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;表&lt;/th&gt;&lt;th&gt;示例记录&lt;/th&gt;&lt;th&gt;这行在现实中表示什么&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-example&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;这条链能够回答的问题&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;张同学参加了哪次测评，什么时候提交，最终得分多少？&lt;/li&gt;
+      &lt;li&gt;哪道题答错了，这道题考查哪个能力点，错因是什么？&lt;/li&gt;
+      &lt;li&gt;某个能力点的掌握度如何计算，和上次相比是否进步？&lt;/li&gt;
+      &lt;li&gt;教师向哪位家长反馈了什么，提出了什么行动计划？&lt;/li&gt;
+      &lt;li&gt;反馈是否及时，家长续费意向和风险等级是什么？&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/section&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;data-model-complete&#x27;);
+      const nodeDetails = {
+        assessment: [&#x27;测评 assessment&#x27;,&#x27;一行 = 一次可发布的测评&#x27;,[&#x27;PK：assessment_id&#x27;,&#x27;FK：course_id、class_id、created_by&#x27;,&#x27;定义名称、类型、时间、总分与状态&#x27;]],
+        assessment_question: [&#x27;测评题目 assessment_question&#x27;,&#x27;一行 = 一道题在一套测评中的使用&#x27;,[&#x27;PK：assessment_question_id&#x27;,&#x27;FK：assessment_id、question_id&#x27;,&#x27;保存本次分值、顺序和是否必答&#x27;,&#x27;它解决测评与题目的多对多关系&#x27;]],
+        question: [&#x27;题目 question&#x27;,&#x27;一行 = 一道可复用的标准题目&#x27;,[&#x27;PK：question_id&#x27;,&#x27;FK：skill_id&#x27;,&#x27;保存题干、答案、难度和解析&#x27;,&#x27;避免每次测评重复保存题目内容&#x27;]],
+        attempt: [&#x27;学员测评 assessment_attempt&#x27;,&#x27;一行 = 一名学员参加一次测评&#x27;,[&#x27;PK：attempt_id&#x27;,&#x27;FK：assessment_id、student_id、graded_by&#x27;,&#x27;连接测评规则与真实学员&#x27;,&#x27;保存开始、提交、评分状态和最终分数&#x27;]],
+        answer: [&#x27;学员答题 student_answer&#x27;,&#x27;一行 = 学员对一道测评题目的最终作答&#x27;,[&#x27;PK：answer_id&#x27;,&#x27;FK：attempt_id、assessment_question_id&#x27;,&#x27;保存答案、得分、错因和诊断&#x27;,&#x27;正确率和掌握度都从这里推导&#x27;]],
+        feedback: [&#x27;反馈记录 feedback&#x27;,&#x27;一行 = 针对一次测评结果的一次反馈&#x27;,[&#x27;PK：feedback_id&#x27;,&#x27;FK：attempt_id、guardian_id、owner_id&#x27;,&#x27;保存优势、薄弱点、行动计划和家长回应&#x27;,&#x27;一次测评允许产生多次反馈&#x27;]],
+        student: [&#x27;学员主数据&#x27;,&#x27;一行 = 一名唯一学员&#x27;,[&#x27;PK：student_id&#x27;,&#x27;被历次学员测评共同引用&#x27;,&#x27;同一编号保证进步趋势可计算&#x27;]],
+        skill: [&#x27;能力点主数据&#x27;,&#x27;一行 = 一个统一定义的能力点&#x27;,[&#x27;PK：skill_id&#x27;,&#x27;被题目引用&#x27;,&#x27;让教研、教学、测评和反馈使用同一口径&#x27;]],
+        guardian: [&#x27;家长主数据&#x27;,&#x27;一行 = 一名家长或监护人&#x27;,[&#x27;PK：guardian_id&#x27;,&#x27;被反馈记录引用&#x27;,&#x27;明确反馈接收人&#x27;]],
+        staff: [&#x27;员工主数据&#x27;,&#x27;一行 = 一名员工&#x27;,[&#x27;PK：staff_id&#x27;,&#x27;用于创建人、评分人和反馈负责人&#x27;,&#x27;确保责任可追踪&#x27;]]
+      };
+      const tables = [
+        {name:&#x27;assessment&#x27;,cn:&#x27;测评表&#x27;,grain:&#x27;一行 = 一次可发布、可供学员参加的测评&#x27;,fields:[[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;测评唯一编号&#x27;],[&#x27;assessment_name&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;NOT NULL&#x27;,&#x27;测评名称&#x27;],[&#x27;assessment_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;入学、单元、月度、期末或复测&#x27;],[&#x27;course_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;所属课程&#x27;],[&#x27;class_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;适用班级；通用测评可为空&#x27;],[&#x27;total_score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;NOT NULL&#x27;,&#x27;测评总分&#x27;],[&#x27;start_time&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;开始时间&#x27;],[&#x27;end_time&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;结束时间&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;草稿、已发布、已结束、已归档&#x27;],[&#x27;created_by&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;创建人员&#x27;],[&#x27;created_at&#x27;,&#x27;DATETIME&#x27;,&#x27;NOT NULL&#x27;,&#x27;创建时间&#x27;]]},
+        {name:&#x27;question&#x27;,cn:&#x27;题目表&#x27;,grain:&#x27;一行 = 一道可以被重复使用的标准题目&#x27;,fields:[[&#x27;question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;题目唯一编号&#x27;],[&#x27;question_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;单选、填空、口语、写作等&#x27;],[&#x27;question_content&#x27;,&#x27;TEXT&#x27;,&#x27;NOT NULL&#x27;,&#x27;题干或资源地址&#x27;],[&#x27;standard_answer&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;标准答案&#x27;],[&#x27;skill_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;主要能力点&#x27;],[&#x27;difficulty&#x27;,&#x27;SMALLINT&#x27;,&#x27;NOT NULL&#x27;,&#x27;建议使用 1～5 级&#x27;],[&#x27;explanation&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;答案解析&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;启用或停用&#x27;],[&#x27;created_at&#x27;,&#x27;DATETIME&#x27;,&#x27;NOT NULL&#x27;,&#x27;创建时间&#x27;]]},
+        {name:&#x27;assessment_question&#x27;,cn:&#x27;测评题目表&#x27;,grain:&#x27;一行 = 一道题在一套测评中的使用；唯一约束 assessment_id + question_id&#x27;,fields:[[&#x27;assessment_question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;测评题目编号&#x27;],[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;所属测评&#x27;],[&#x27;question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;对应标准题目&#x27;],[&#x27;question_order&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;题目顺序&#x27;],[&#x27;score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;NOT NULL&#x27;,&#x27;本次测评中的分值&#x27;],[&#x27;is_required&#x27;,&#x27;BOOLEAN&#x27;,&#x27;NOT NULL&#x27;,&#x27;是否必答&#x27;]]},
+        {name:&#x27;assessment_attempt&#x27;,cn:&#x27;学员测评表&#x27;,grain:&#x27;一行 = 一名学员参加一次测评；唯一约束 assessment_id + student_id&#x27;,fields:[[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;学员测评编号&#x27;],[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;测评编号&#x27;],[&#x27;student_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;学员编号&#x27;],[&#x27;started_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;开始作答时间&#x27;],[&#x27;submitted_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;提交时间&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;未开始、作答中、已提交、已评分&#x27;],[&#x27;final_score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;可空&#x27;,&#x27;最终得分；应与答题明细汇总一致&#x27;],[&#x27;graded_by&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;人工评分教师&#x27;],[&#x27;graded_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;评分完成时间&#x27;]]},
+        {name:&#x27;student_answer&#x27;,cn:&#x27;学员答题表&#x27;,grain:&#x27;一行 = 学员对测评中一道题的最终作答；唯一约束 attempt_id + assessment_question_id&#x27;,fields:[[&#x27;answer_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;答题编号&#x27;],[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;学员测评编号&#x27;],[&#x27;assessment_question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;测评题目编号&#x27;],[&#x27;student_answer&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;学员答案&#x27;],[&#x27;is_correct&#x27;,&#x27;BOOLEAN&#x27;,&#x27;可空&#x27;,&#x27;是否正确；主观题评分前可以为空&#x27;],[&#x27;score_awarded&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;NOT NULL&#x27;,&#x27;实际得分&#x27;],[&#x27;error_reason&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;可空&#x27;,&#x27;知识、审题、粗心、表达等&#x27;],[&#x27;teacher_comment&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;教师诊断&#x27;],[&#x27;answered_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;作答时间&#x27;]]},
+        {name:&#x27;feedback&#x27;,cn:&#x27;反馈记录表&#x27;,grain:&#x27;一行 = 针对一次学员测评的一次反馈行为&#x27;,fields:[[&#x27;feedback_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;反馈编号&#x27;],[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;对应学员测评&#x27;],[&#x27;guardian_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;接收家长&#x27;],[&#x27;feedback_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;学情报告、电话、面谈或微信&#x27;],[&#x27;summary&#x27;,&#x27;TEXT&#x27;,&#x27;NOT NULL&#x27;,&#x27;学习表现摘要&#x27;],[&#x27;strengths&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;优势能力&#x27;],[&#x27;weaknesses&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;薄弱能力&#x27;],[&#x27;action_plan&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;改进目标和行动&#x27;],[&#x27;guardian_response&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;家长反馈&#x27;],[&#x27;risk_level&#x27;,&#x27;VARCHAR(10)&#x27;,&#x27;可空&#x27;,&#x27;低、中或高&#x27;],[&#x27;renewal_intention&#x27;,&#x27;VARCHAR(10)&#x27;,&#x27;可空&#x27;,&#x27;低、中或高&#x27;],[&#x27;owner_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;反馈负责人&#x27;],[&#x27;feedback_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;实际反馈时间&#x27;],[&#x27;follow_up_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;下次跟进时间&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;待反馈、已反馈、待跟进或已关闭&#x27;]]}
+      ];
+      const relations = [[&#x27;测评 → 测评题目&#x27;,&#x27;1:N&#x27;,&#x27;一套测评包含多道题&#x27;],[&#x27;题目 → 测评题目&#x27;,&#x27;1:N&#x27;,&#x27;一道题可以被多套测评使用&#x27;],[&#x27;测评 → 学员测评&#x27;,&#x27;1:N&#x27;,&#x27;多名学员可以参加同一测评&#x27;],[&#x27;学员 → 学员测评&#x27;,&#x27;1:N&#x27;,&#x27;一名学员会参加多次测评&#x27;],[&#x27;学员测评 → 学员答题&#x27;,&#x27;1:N&#x27;,&#x27;一次测评包含多条答题记录&#x27;],[&#x27;测评题目 → 学员答题&#x27;,&#x27;1:N&#x27;,&#x27;多名学员会回答同一道测评题目&#x27;],[&#x27;能力点 → 题目&#x27;,&#x27;1:N&#x27;,&#x27;一个能力点可以由多道题测量&#x27;],[&#x27;学员测评 → 反馈&#x27;,&#x27;1:N&#x27;,&#x27;一次测评结果可能发生多次反馈&#x27;]];
+      const metrics = [[&#x27;学员测评得分&#x27;,&#x27;SUM(student_answer.score_awarded)&#x27;,&#x27;可计算&#x27;],[&#x27;测评完成率&#x27;,&#x27;按 assessment_attempt.status 统计&#x27;,&#x27;可计算&#x27;],[&#x27;题目正确率&#x27;,&#x27;按 student_answer.is_correct 汇总&#x27;,&#x27;可计算&#x27;],[&#x27;能力点掌握度&#x27;,&#x27;答题 → 测评题目 → 题目 → 能力点；实得分 ÷ 应得分&#x27;,&#x27;可计算&#x27;],[&#x27;学员进步趋势&#x27;,&#x27;比较同一 student_id 历次 final_score&#x27;,&#x27;可计算&#x27;],[&#x27;高频错因&#x27;,&#x27;按 student_answer.error_reason 分组&#x27;,&#x27;可计算&#x27;],[&#x27;薄弱能力点&#x27;,&#x27;识别掌握度低于业务阈值的能力点&#x27;,&#x27;可计算&#x27;],[&#x27;反馈及时率&#x27;,&#x27;比较 submitted_at 与 feedback_at&#x27;,&#x27;可计算&#x27;],[&#x27;家长续费意向&#x27;,&#x27;汇总 feedback.renewal_intention&#x27;,&#x27;可计算&#x27;],[&#x27;风险学员数量&#x27;,&#x27;按 feedback.risk_level 统计去重学员&#x27;,&#x27;可计算&#x27;]];
+      const checks = [[&#x27;测评总分等于题目分值之和&#x27;,&#x27;assessment.total_score = SUM(assessment_question.score)&#x27;],[&#x27;最终得分等于逐题得分之和&#x27;,&#x27;assessment_attempt.final_score = SUM(student_answer.score_awarded)&#x27;],[&#x27;单题得分不能超过本题分值&#x27;,&#x27;score_awarded ≤ assessment_question.score&#x27;],[&#x27;结束时间不能早于开始时间&#x27;,&#x27;end_time ≥ start_time&#x27;],[&#x27;反馈必须关联有效学员测评&#x27;,&#x27;feedback.attempt_id 外键校验&#x27;],[&#x27;已评分必须有评分时间&#x27;,&#x27;status = 已评分时 graded_at 非空&#x27;]];
+      const expansions = [[&#x27;一道题需同时统计多个能力点&#x27;,&#x27;新增 question_skill&#x27;],[&#x27;允许补考或多次尝试&#x27;,&#x27;增加 attempt_no 并调整唯一约束&#x27;],[&#x27;改进任务需要分配、提醒和验收&#x27;,&#x27;新增 improvement_action&#x27;],[&#x27;反馈报告需要版本管理和审批&#x27;,&#x27;拆分 learning_report 与 feedback_communication&#x27;],[&#x27;能力结果计算量过大且需历史快照&#x27;,&#x27;新增 student_skill_snapshot&#x27;],[&#x27;不同场次需要独立地点、时间和监考&#x27;,&#x27;新增 assessment_session&#x27;]];
+      const examples = [[&#x27;assessment&#x27;,&#x27;A001｜八月月度测评｜总分100&#x27;,&#x27;机构发布的一套测评规则&#x27;],[&#x27;question&#x27;,&#x27;Q017｜阅读主旨题｜skill=SK03&#x27;,&#x27;题库中可重复使用的一道标准题&#x27;],[&#x27;assessment_question&#x27;,&#x27;AQ001｜A001 + Q017｜5分&#x27;,&#x27;Q017 在 A001 中排第几题、值多少分&#x27;],[&#x27;assessment_attempt&#x27;,&#x27;T001｜A001 + S001｜得分82&#x27;,&#x27;学员 S001 参加 A001 的这一次真实作答&#x27;],[&#x27;student_answer&#x27;,&#x27;AN017｜T001 + AQ001｜得分0｜审题错误&#x27;,&#x27;S001 对 Q017 的最终答案与诊断&#x27;],[&#x27;feedback&#x27;,&#x27;F001｜T001 + G001｜待跟进&#x27;,&#x27;教师基于 T001 向家长 G001 做的一次反馈&#x27;]];
+
+      Object.assign(nodeDetails, {
+        resource: [&#x27;教学资源 learning_resource&#x27;,&#x27;一行 = 一个有明确来源与版本的文件&#x27;,[&#x27;PK：resource_id&#x27;,&#x27;文件哈希 file_hash 唯一&#x27;,&#x27;保存来源、版本、级别、文件地址和授权状态&#x27;,&#x27;同一PDF只登记一次&#x27;]],
+        content: [&#x27;内容单元 content_unit&#x27;,&#x27;一行 = 资源中一个可独立教学或布置的单元&#x27;,[&#x27;PK：content_unit_id&#x27;,&#x27;FK：resource_id&#x27;,&#x27;保存标题、正文、页码、体裁和主题&#x27;,&#x27;例如 Look Out! 是一个内容单元&#x27;]],
+        assessment: [&#x27;作业／测评 assessment&#x27;,&#x27;一行 = 一次可发布的作业或测评&#x27;,[&#x27;PK：assessment_id&#x27;,&#x27;FK：course_id、class_id、created_by&#x27;,&#x27;保存布置时间、截止时间、方式、评分规则与状态&#x27;]],
+        question: [&#x27;题目 question&#x27;,&#x27;一行 = 一个可独立作答和评分的原子题目&#x27;,[&#x27;PK：question_id&#x27;,&#x27;FK：content_unit_id、skill_id&#x27;,&#x27;保存选项、回答类型、评分方式、量规和来源页码&#x27;,&#x27;拼写与造句若分别分析，必须拆成不同题目&#x27;]],
+        attempt: [&#x27;学员作业 assessment_attempt&#x27;,&#x27;一行 = 一名学员参加或提交一次作业／测评&#x27;,[&#x27;PK：attempt_id&#x27;,&#x27;FK：assessment_id、student_id、graded_by&#x27;,&#x27;保存提交方式、附件、状态和最终分数&#x27;,&#x27;是否逾期由 submitted_at 与 due_at 计算&#x27;]],
+        answer: [&#x27;学员答题 student_answer&#x27;,&#x27;一行 = 学员对一道测评题目的最终作答&#x27;,[&#x27;PK：answer_id&#x27;,&#x27;FK：attempt_id、assessment_question_id、graded_by&#x27;,&#x27;保存答案、图片、评分状态、得分、错因和诊断&#x27;,&#x27;正确率和能力掌握度从这里推导&#x27;]]
+      });
+
+      const tablesV2 = [
+        {name:&#x27;learning_resource&#x27;,cn:&#x27;教学资源表&#x27;,grain:&#x27;一行 = 一个有明确来源、版本和授权状态的资源文件&#x27;,fields:[[&#x27;resource_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;资源唯一编号&#x27;],[&#x27;resource_name&#x27;,&#x27;VARCHAR(200)&#x27;,&#x27;NOT NULL&#x27;,&#x27;资源名称&#x27;],[&#x27;resource_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;PDF、音频、视频等&#x27;],[&#x27;level_system&#x27;,&#x27;VARCHAR(50)&#x27;,&#x27;可空&#x27;,&#x27;分级体系&#x27;],[&#x27;level_value&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;可空&#x27;,&#x27;分级值，如 D&#x27;],[&#x27;author&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;可空&#x27;,&#x27;作者&#x27;],[&#x27;publisher&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;可空&#x27;,&#x27;出版或来源主体&#x27;],[&#x27;language&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;资源语言&#x27;],[&#x27;file_name&#x27;,&#x27;VARCHAR(255)&#x27;,&#x27;NOT NULL&#x27;,&#x27;原始文件名&#x27;],[&#x27;file_uri&#x27;,&#x27;TEXT&#x27;,&#x27;NOT NULL&#x27;,&#x27;内部存储地址&#x27;],[&#x27;file_hash&#x27;,&#x27;CHAR(64)&#x27;,&#x27;UNIQUE、NOT NULL&#x27;,&#x27;SHA-256，用于去重和版本识别&#x27;],[&#x27;page_count&#x27;,&#x27;INT&#x27;,&#x27;可空&#x27;,&#x27;PDF总页数&#x27;],[&#x27;copyright_note&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;版权说明&#x27;],[&#x27;license_status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;待确认、已授权、限制使用&#x27;],[&#x27;version&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;NOT NULL&#x27;,&#x27;资源版本&#x27;],[&#x27;created_at&#x27;,&#x27;DATETIME&#x27;,&#x27;NOT NULL&#x27;,&#x27;登记时间&#x27;]]},
+        {name:&#x27;content_unit&#x27;,cn:&#x27;内容单元表&#x27;,grain:&#x27;一行 = 资源中一个可独立教学、布置或测评的内容单元&#x27;,fields:[[&#x27;content_unit_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;内容单元编号&#x27;],[&#x27;resource_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;来源资源&#x27;],[&#x27;unit_order&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;在资源中的顺序&#x27;],[&#x27;unit_title&#x27;,&#x27;VARCHAR(200)&#x27;,&#x27;NOT NULL&#x27;,&#x27;单元标题&#x27;],[&#x27;content_type&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;NOT NULL&#x27;,&#x27;阅读文章、听力材料等&#x27;],[&#x27;level_value&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;可空&#x27;,&#x27;该单元级别&#x27;],[&#x27;start_page&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;起始页&#x27;],[&#x27;end_page&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;结束页&#x27;],[&#x27;content_text&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;经人工复核的正文&#x27;],[&#x27;word_count&#x27;,&#x27;INT&#x27;,&#x27;可空&#x27;,&#x27;正文词数&#x27;],[&#x27;genre&#x27;,&#x27;VARCHAR(50)&#x27;,&#x27;可空&#x27;,&#x27;文本体裁&#x27;],[&#x27;topic&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;可空&#x27;,&#x27;内容主题&#x27;],[&#x27;language&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;内容语言&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;待录入、待复核、已复核&#x27;]]},
+        {name:&#x27;assessment&#x27;,cn:&#x27;作业／测评表&#x27;,grain:&#x27;一行 = 一次可发布、可供学员参加的作业或测评&#x27;,fields:[[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;作业或测评唯一编号&#x27;],[&#x27;assessment_name&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;NOT NULL&#x27;,&#x27;名称&#x27;],[&#x27;assessment_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;课后作业、入学、单元、月度、期末或复测&#x27;],[&#x27;assessment_purpose&#x27;,&#x27;VARCHAR(50)&#x27;,&#x27;可空&#x27;,&#x27;预习、复习、诊断或评价&#x27;],[&#x27;course_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;所属课程&#x27;],[&#x27;class_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;适用班级&#x27;],[&#x27;total_score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;NOT NULL&#x27;,&#x27;总分；应与测评题目分值汇总一致&#x27;],[&#x27;assigned_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;实际布置时间&#x27;],[&#x27;due_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;作业截止时间&#x27;],[&#x27;start_time&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;考试开放时间&#x27;],[&#x27;end_time&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;考试关闭时间&#x27;],[&#x27;delivery_mode&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;纸质、PDF、在线&#x27;],[&#x27;scoring_rule&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;NOT NULL&#x27;,&#x27;分数、正确率或完成度&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;草稿、已发布、已结束、已归档&#x27;],[&#x27;created_by&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;创建或布置人员&#x27;],[&#x27;created_at&#x27;,&#x27;DATETIME&#x27;,&#x27;NOT NULL&#x27;,&#x27;创建时间&#x27;]]},
+        {name:&#x27;question&#x27;,cn:&#x27;题目表&#x27;,grain:&#x27;一行 = 一个可以独立作答和评分的原子题目&#x27;,fields:[[&#x27;question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;题目唯一编号&#x27;],[&#x27;content_unit_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;所依据的内容单元&#x27;],[&#x27;question_type&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;NOT NULL&#x27;,&#x27;理解、拼写、语法、表达等&#x27;],[&#x27;response_type&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;NOT NULL&#x27;,&#x27;单选、填空、短答、图片上传等&#x27;],[&#x27;question_content&#x27;,&#x27;TEXT&#x27;,&#x27;NOT NULL&#x27;,&#x27;题干&#x27;],[&#x27;options_json&#x27;,&#x27;JSON&#x27;,&#x27;可空&#x27;,&#x27;结构化选项&#x27;],[&#x27;standard_answer&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;标准答案&#x27;],[&#x27;skill_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK&#x27;,&#x27;主要能力点&#x27;],[&#x27;difficulty&#x27;,&#x27;SMALLINT&#x27;,&#x27;NOT NULL&#x27;,&#x27;建议使用 1～5 级&#x27;],[&#x27;grading_method&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;自动、人工或混合&#x27;],[&#x27;rubric_json&#x27;,&#x27;JSON&#x27;,&#x27;可空&#x27;,&#x27;开放题评分标准&#x27;],[&#x27;source_page&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;原文件页码&#x27;],[&#x27;source_locator&#x27;,&#x27;VARCHAR(100)&#x27;,&#x27;可空&#x27;,&#x27;页内题号或区域&#x27;],[&#x27;explanation&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;答案解析&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;启用或停用&#x27;],[&#x27;created_at&#x27;,&#x27;DATETIME&#x27;,&#x27;NOT NULL&#x27;,&#x27;创建时间&#x27;]]},
+        {name:&#x27;assessment_question&#x27;,cn:&#x27;测评题目表&#x27;,grain:&#x27;一行 = 一道题在一套测评中的使用；唯一约束 assessment_id + question_id&#x27;,fields:[[&#x27;assessment_question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;测评题目编号&#x27;],[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;所属作业或测评&#x27;],[&#x27;question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;对应标准题目&#x27;],[&#x27;question_order&#x27;,&#x27;INT&#x27;,&#x27;NOT NULL&#x27;,&#x27;题目顺序&#x27;],[&#x27;score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;NOT NULL&#x27;,&#x27;本次作业中的分值&#x27;],[&#x27;is_required&#x27;,&#x27;BOOLEAN&#x27;,&#x27;NOT NULL&#x27;,&#x27;是否必答&#x27;]]},
+        {name:&#x27;assessment_attempt&#x27;,cn:&#x27;学员作业／测评记录表&#x27;,grain:&#x27;一行 = 一名学员参加或提交一次作业／测评；唯一约束 assessment_id + student_id&#x27;,fields:[[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;学员作业编号&#x27;],[&#x27;assessment_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;作业或测评编号&#x27;],[&#x27;student_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;学员编号&#x27;],[&#x27;started_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;开始作答时间&#x27;],[&#x27;submitted_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;提交时间&#x27;],[&#x27;submission_mode&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;可空&#x27;,&#x27;在线、纸质、照片或文件&#x27;],[&#x27;submission_uri&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;原始提交附件地址&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;未开始、作答中、部分提交、已提交、已评分&#x27;],[&#x27;final_score&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;可空&#x27;,&#x27;最终得分；应与答题明细汇总一致&#x27;],[&#x27;graded_by&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;整份作业评分负责人&#x27;],[&#x27;graded_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;整份评分完成时间&#x27;]]},
+        {name:&#x27;student_answer&#x27;,cn:&#x27;学员答题表&#x27;,grain:&#x27;一行 = 学员对测评中一道题的最终作答；唯一约束 attempt_id + assessment_question_id&#x27;,fields:[[&#x27;answer_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;答题编号&#x27;],[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;学员作业编号&#x27;],[&#x27;assessment_question_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;测评题目编号&#x27;],[&#x27;student_answer&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;学员答案&#x27;],[&#x27;answer_image_uri&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;该题对应的原始图片或裁剪地址&#x27;],[&#x27;is_correct&#x27;,&#x27;BOOLEAN&#x27;,&#x27;可空&#x27;,&#x27;是否正确；主观题评分前可以为空&#x27;],[&#x27;grading_status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;未评分、自动完成、待人工、已评分&#x27;],[&#x27;score_awarded&#x27;,&#x27;DECIMAL(6,2)&#x27;,&#x27;可空&#x27;,&#x27;实际得分&#x27;],[&#x27;error_reason&#x27;,&#x27;VARCHAR(30)&#x27;,&#x27;可空&#x27;,&#x27;知识、审题、粗心、表达等&#x27;],[&#x27;teacher_comment&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;教师诊断&#x27;],[&#x27;graded_by&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;本题评分人员&#x27;],[&#x27;graded_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;本题评分时间&#x27;],[&#x27;answered_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;作答时间&#x27;]]},
+        {name:&#x27;feedback&#x27;,cn:&#x27;反馈记录表&#x27;,grain:&#x27;一行 = 针对一次学员作业或测评的一次反馈行为&#x27;,fields:[[&#x27;feedback_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;PK&#x27;,&#x27;反馈编号&#x27;],[&#x27;attempt_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;对应学员作业&#x27;],[&#x27;guardian_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK，可空&#x27;,&#x27;接收家长&#x27;],[&#x27;feedback_type&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;学情报告、电话、面谈或微信&#x27;],[&#x27;summary&#x27;,&#x27;TEXT&#x27;,&#x27;NOT NULL&#x27;,&#x27;学习表现摘要&#x27;],[&#x27;strengths&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;优势能力&#x27;],[&#x27;weaknesses&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;薄弱能力&#x27;],[&#x27;action_plan&#x27;,&#x27;TEXT/JSON&#x27;,&#x27;可空&#x27;,&#x27;改进目标和行动&#x27;],[&#x27;guardian_response&#x27;,&#x27;TEXT&#x27;,&#x27;可空&#x27;,&#x27;家长反馈&#x27;],[&#x27;risk_level&#x27;,&#x27;VARCHAR(10)&#x27;,&#x27;可空&#x27;,&#x27;低、中或高&#x27;],[&#x27;renewal_intention&#x27;,&#x27;VARCHAR(10)&#x27;,&#x27;可空&#x27;,&#x27;低、中或高&#x27;],[&#x27;owner_id&#x27;,&#x27;VARCHAR(32)&#x27;,&#x27;FK、NOT NULL&#x27;,&#x27;反馈负责人&#x27;],[&#x27;feedback_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;实际反馈时间&#x27;],[&#x27;follow_up_at&#x27;,&#x27;DATETIME&#x27;,&#x27;可空&#x27;,&#x27;下次跟进时间&#x27;],[&#x27;status&#x27;,&#x27;VARCHAR(20)&#x27;,&#x27;NOT NULL&#x27;,&#x27;待反馈、已反馈、待跟进或已关闭&#x27;]]}
+      ];
+      const relationsV2 = [[&#x27;教学资源 → 内容单元&#x27;,&#x27;1:N&#x27;,&#x27;一个PDF可拆成多个独立阅读主题&#x27;],[&#x27;内容单元 → 题目&#x27;,&#x27;1:N&#x27;,&#x27;同一篇文章可支持多道理解、拼写和表达题&#x27;],[&#x27;能力点 → 题目&#x27;,&#x27;1:N&#x27;,&#x27;一个能力点可以由多道题测量&#x27;],[&#x27;测评 → 测评题目&#x27;,&#x27;1:N&#x27;,&#x27;一套作业包含多道题&#x27;],[&#x27;题目 → 测评题目&#x27;,&#x27;1:N&#x27;,&#x27;一道题可以被多套作业复用&#x27;],[&#x27;测评 → 学员测评&#x27;,&#x27;1:N&#x27;,&#x27;多名学员可以参加同一作业&#x27;],[&#x27;学员 → 学员测评&#x27;,&#x27;1:N&#x27;,&#x27;一名学员会参加多次作业&#x27;],[&#x27;学员测评 → 学员答题&#x27;,&#x27;1:N&#x27;,&#x27;一次提交包含多条答题记录&#x27;],[&#x27;测评题目 → 学员答题&#x27;,&#x27;1:N&#x27;,&#x27;多名学员会回答同一道作业题&#x27;],[&#x27;学员测评 → 反馈&#x27;,&#x27;1:N&#x27;,&#x27;一次结果可能发生报告、电话等多次反馈&#x27;]];
+      const erchecksV2 = [[&#x27;表粒度&#x27;,&#x27;通过&#x27;,&#x27;8张表均能用一句话定义“一行代表什么”&#x27;],[&#x27;资源复用&#x27;,&#x27;通过&#x27;,&#x27;PDF与19个阅读单元分离，文件信息不重复&#x27;],[&#x27;多对多关系&#x27;,&#x27;通过&#x27;,&#x27;assessment_question 显式解决测评与题目的多对多&#x27;],[&#x27;来源追溯&#x27;,&#x27;通过&#x27;,&#x27;question → content_unit → learning_resource 可定位原文件与页码&#x27;],[&#x27;纸质提交&#x27;,&#x27;通过&#x27;,&#x27;attempt 保存整份附件，answer 可保存题目裁剪图&#x27;],[&#x27;冗余控制&#x27;,&#x27;通过&#x27;,&#x27;不保存 is_late；由 submitted_at 与 due_at 计算&#x27;],[&#x27;评分一致性&#x27;,&#x27;通过&#x27;,&#x27;题目定义评分方式，测评题目定义本次分值，答题保存实际得分&#x27;],[&#x27;扩展边界&#x27;,&#x27;通过&#x27;,&#x27;补考、多能力点、审批等继续延迟拆表&#x27;]];
+      const metricsV2 = [[&#x27;学员作业得分&#x27;,&#x27;SUM(student_answer.score_awarded)&#x27;,&#x27;可计算&#x27;],[&#x27;作业完成率&#x27;,&#x27;按 assessment_attempt.status 统计&#x27;,&#x27;可计算&#x27;],[&#x27;逾期率&#x27;,&#x27;submitted_at &gt; assessment.due_at&#x27;,&#x27;可计算，不重复存 is_late&#x27;],[&#x27;题目正确率&#x27;,&#x27;按 student_answer.is_correct 汇总&#x27;,&#x27;可计算&#x27;],[&#x27;能力点掌握度&#x27;,&#x27;答题 → 测评题目 → 题目 → 能力点；实得分 ÷ 应得分&#x27;,&#x27;可计算&#x27;],[&#x27;资源使用次数&#x27;,&#x27;resource → content_unit → question → assessment_question 去重 assessment_id&#x27;,&#x27;可计算&#x27;],[&#x27;内容单元正确率&#x27;,&#x27;按 question.content_unit_id 汇总答题&#x27;,&#x27;可计算&#x27;],[&#x27;人工待评分量&#x27;,&#x27;grading_status = 待人工&#x27;,&#x27;可计算&#x27;],[&#x27;反馈及时率&#x27;,&#x27;比较 submitted_at 与 feedback_at&#x27;,&#x27;可计算&#x27;],[&#x27;家长续费意向&#x27;,&#x27;汇总 feedback.renewal_intention&#x27;,&#x27;可计算&#x27;]];
+      const checksV2 = [[&#x27;资源版本唯一&#x27;,&#x27;UNIQUE(file_hash)&#x27;],[&#x27;内容单元页码有效&#x27;,&#x27;1 ≤ start_page ≤ end_page ≤ page_count&#x27;],[&#x27;测评总分等于题目分值之和&#x27;,&#x27;assessment.total_score = SUM(assessment_question.score)&#x27;],[&#x27;最终得分等于逐题得分之和&#x27;,&#x27;assessment_attempt.final_score = SUM(student_answer.score_awarded)&#x27;],[&#x27;单题得分不能超过本题分值&#x27;,&#x27;score_awarded ≤ assessment_question.score&#x27;],[&#x27;截止时间不能早于布置时间&#x27;,&#x27;due_at ≥ assigned_at&#x27;],[&#x27;自动评分题必须有标准答案&#x27;,&#x27;grading_method = 自动时 standard_answer 非空&#x27;],[&#x27;选择题必须有结构化选项&#x27;,&#x27;response_type = 单选时 options_json 非空&#x27;],[&#x27;已评分答案必须有评分信息&#x27;,&#x27;grading_status = 已评分时 graded_by、graded_at 非空&#x27;],[&#x27;反馈必须关联有效学员作业&#x27;,&#x27;feedback.attempt_id 外键校验&#x27;]];
+      const examplesV2 = [[&#x27;learning_resource&#x27;,&#x27;RES001｜Guided Reading Level D｜59页&#x27;,&#x27;登记一次PDF来源、版本、文件哈希和授权状态&#x27;],[&#x27;content_unit&#x27;,&#x27;CU001｜Look Out!｜第2-4页&#x27;,&#x27;PDF中的一个可独立布置的阅读主题&#x27;],[&#x27;question&#x27;,&#x27;Q001｜The cat can see the ___.｜答案B&#x27;,&#x27;CU001下的一道可自动评分选择题&#x27;],[&#x27;assessment&#x27;,&#x27;HW001｜D级阅读作业01｜截止8月5日&#x27;,&#x27;教师把若干题布置给一个班级&#x27;],[&#x27;assessment_question&#x27;,&#x27;AQ001｜HW001 + Q001｜1分&#x27;,&#x27;Q001在本次作业中的顺序与分值&#x27;],[&#x27;assessment_attempt&#x27;,&#x27;T001｜HW001 + S001｜照片提交&#x27;,&#x27;学员S001对HW001的一次真实提交&#x27;],[&#x27;student_answer&#x27;,&#x27;AN001｜T001 + AQ001｜答案B｜得1分&#x27;,&#x27;S001对Q001的最终答案与评分&#x27;],[&#x27;feedback&#x27;,&#x27;F001｜T001 + G001｜待跟进&#x27;,&#x27;教师基于T001向家长G001做的一次反馈&#x27;]];
+
+      const row = cells =&gt; `&lt;tr&gt;${cells.map(c =&gt; `&lt;td&gt;${c}&lt;/td&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;`;
+      root.querySelector(&#x27;#dmc-relations&#x27;).innerHTML = relationsV2.map((r,i) =&gt; row([i+1,...r])).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-erchecks&#x27;).innerHTML = erchecksV2.map(r =&gt; row(r)).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-metrics&#x27;).innerHTML = metricsV2.map((r,i) =&gt; row([i+1,...r])).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-checks&#x27;).innerHTML = checksV2.map((r,i) =&gt; row([i+1,...r])).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-expansions&#x27;).innerHTML = expansions.map((r,i) =&gt; row([i+1,...r])).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-example&#x27;).innerHTML = examplesV2.map(r =&gt; row([`&lt;code&gt;${r[0]}&lt;/code&gt;`,r[1],r[2]])).join(&#x27;&#x27;);
+      root.querySelector(&#x27;#dmc-dictionaries&#x27;).innerHTML = tablesV2.map((t,ti) =&gt; `
+        &lt;h3 class=&quot;dmc-table-title&quot;&gt;${ti+1}. ${t.cn} &lt;code&gt;${t.name}&lt;/code&gt;&lt;/h3&gt;
+        &lt;p class=&quot;dmc-table-grain&quot;&gt;${t.grain}&lt;/p&gt;
+        &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;字段&lt;/th&gt;&lt;th&gt;类型&lt;/th&gt;&lt;th&gt;约束&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+          ${t.fields.map((f,i) =&gt; row([i+1,`&lt;code&gt;${f[0]}&lt;/code&gt;`,f[1],`&lt;span class=&quot;${f[2].includes(&#x27;PK&#x27;)?&#x27;dmc-pk&#x27;:f[2].includes(&#x27;FK&#x27;)?&#x27;dmc-fk&#x27;:&#x27;&#x27;}&quot;&gt;${f[2]}&lt;/span&gt;`,f[3]])).join(&#x27;&#x27;)}
+        &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+
+      const detailTitle = root.querySelector(&#x27;#dmc-detail-title&#x27;);
+      const detailGrain = root.querySelector(&#x27;#dmc-detail-grain&#x27;);
+      const detailList = root.querySelector(&#x27;#dmc-detail-list&#x27;);
+      function selectNode(key) {
+        const d = nodeDetails[key];
+        root.querySelectorAll(&#x27;.dmc-node&#x27;).forEach(n =&gt; n.classList.toggle(&#x27;active&#x27;, n.dataset.node === key));
+        detailTitle.textContent = d[0];
+        detailGrain.textContent = d[1];
+        detailList.replaceChildren(...d[2].map(text =&gt; { const li=document.createElement(&#x27;li&#x27;); li.textContent=text; return li; }));
+      }
+      root.querySelectorAll(&#x27;.dmc-node&#x27;).forEach(node =&gt; {
+        node.setAttribute(&#x27;role&#x27;,&#x27;button&#x27;);
+        node.setAttribute(&#x27;aria-label&#x27;,`查看${nodeDetails[node.dataset.node][0]}`);
+        node.addEventListener(&#x27;click&#x27;,() =&gt; selectNode(node.dataset.node));
+      });
+      root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;,() =&gt; {
+        const tab=button.dataset.tab;
+        root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach(b =&gt; { const active=b===button; b.classList.toggle(&#x27;btn-primary&#x27;,active); b.setAttribute(&#x27;aria-selected&#x27;,String(active)); });
+        root.querySelectorAll(&#x27;[data-panel]&#x27;).forEach(panel =&gt; panel.classList.toggle(&#x27;dmc-hidden&#x27;,tab!==&#x27;all&#x27; &amp;&amp; panel.dataset.panel!==tab));
+        root.querySelectorAll(&#x27;.dmc-edge&#x27;).forEach(edge =&gt; { const active=tab===&#x27;example&#x27; &amp;&amp; [&#x27;resource-content&#x27;,&#x27;content-question&#x27;,&#x27;question-assessment_question&#x27;,&#x27;assessment-attempt&#x27;,&#x27;attempt-answer&#x27;,&#x27;attempt-feedback&#x27;].includes(edge.dataset.edge); edge.classList.toggle(&#x27;active&#x27;,active); edge.setAttribute(&#x27;marker-end&#x27;,active?&#x27;url(#dmc-arrow-active)&#x27;:&#x27;url(#dmc-arrow)&#x27;); });
+        if(tab===&#x27;example&#x27;) selectNode(&#x27;attempt&#x27;);
+      }));
+      selectNode(&#x27;assessment&#x27;);
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

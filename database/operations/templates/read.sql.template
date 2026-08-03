@@ -1,0 +1,11 @@
+-- operation: 查询业务数据
+-- purpose: <说明查询目的>
+-- source: <说明请求或材料来源>
+-- expected_result: <说明预期结果>
+
+USE `inst_cyana`;
+
+SELECT CURRENT_USER() AS executed_by, NOW(3) AS executed_at;
+
+-- 只读查询从这里开始。
+SELECT '<replace_with_query>' AS pending_query;

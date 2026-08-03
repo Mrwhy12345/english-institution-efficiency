@@ -1,0 +1,7 @@
+.DS_Store
+/tmp/
+/.local/
+*.cnf
+__pycache__/
+*.pyc
+database/create_cyana_accounts.sql

@@ -1,0 +1,57 @@
+-- Cyana 数据库最小权限账号模板
+-- 使用前请将下面两个密码占位符替换为不同的强密码。
+-- 不要将填写真实密码后的文件提交到 Git。
+
+CREATE USER IF NOT EXISTS 'cyana_reader'@'localhost'
+    IDENTIFIED BY '<REPLACE_WITH_READER_PASSWORD>';
+
+CREATE USER IF NOT EXISTS 'cyana_writer'@'localhost'
+    IDENTIFIED BY '<REPLACE_WITH_WRITER_PASSWORD>';
+
+-- 重复执行时同步更新密码。
+ALTER USER 'cyana_reader'@'localhost'
+    IDENTIFIED BY '<REPLACE_WITH_READER_PASSWORD>';
+
+ALTER USER 'cyana_writer'@'localhost'
+    IDENTIFIED BY '<REPLACE_WITH_WRITER_PASSWORD>';
+
+-- 先清空这两个账号在目标库上的既有权限，保证权限边界可重复验证。
+REVOKE ALL PRIVILEGES, GRANT OPTION
+    FROM 'cyana_reader'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION
+    FROM 'cyana_writer'@'localhost';
+
+-- 读账号：查询基础表和视图。
+GRANT SELECT, SHOW VIEW
+    ON `inst_cyana`.* TO 'cyana_reader'@'localhost';
+
+-- 写账号可读取整个机构库，包括结构版本及验证视图。
+GRANT SELECT, SHOW VIEW
+    ON `inst_cyana`.* TO 'cyana_writer'@'localhost';
+
+-- 写权限仅授予10张业务表；schema_version保持只读。
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`person`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`person_relation`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`learning_group`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`group_member`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`content_item`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`activity`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`activity_item`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`submission`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`answer`
+    TO 'cyana_writer'@'localhost';
+GRANT INSERT, UPDATE, DELETE ON `inst_cyana`.`feedback`
+    TO 'cyana_writer'@'localhost';
+
+-- MySQL 8.4 中 GRANT/REVOKE 立即生效，无需 FLUSH PRIVILEGES。
+
+SHOW GRANTS FOR 'cyana_reader'@'localhost';
+SHOW GRANTS FOR 'cyana_writer'@'localhost';
