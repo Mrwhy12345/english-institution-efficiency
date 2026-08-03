@@ -182,3 +182,4 @@ flowchart LR
 ## 十、设计文档
 
 - [测评与反馈最小数据模型](docs/assessment-feedback-minimal-data-model.md)：使用最小化建表原则、ER 关系图、字段数据字典和指标血缘矩阵，论证测评与反馈的数据结构。
+- [测评与反馈数据设计完整交互版](docs/assessment-feedback-data-design.html)：支持一版看全，以及结构关系、字段字典、指标验证和学员实例分层阅读。
