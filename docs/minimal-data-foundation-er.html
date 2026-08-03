@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Minimal Data Foundation Er</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Minimal Data Foundation Er" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Minimal Data Foundation Er&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --red: light-dark(rgb(186 38 35), rgb(250 66 62));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;minimal-foundation-er&quot;&gt;
+  &lt;style&gt;
+    #minimal-foundation-er { color: var(--foreground); }
+    #minimal-foundation-er .mfe-lead, #minimal-foundation-er .mfe-caption { color: var(--muted-foreground); }
+    #minimal-foundation-er .mfe-section { margin-top: 26px; }
+    #minimal-foundation-er .mfe-hidden { display: none; }
+    #minimal-foundation-er .mfe-layout { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(220px,.8fr); gap: 16px; align-items: start; }
+    #minimal-foundation-er svg { display: block; width: 100%; height: auto; }
+    #minimal-foundation-er .edge { stroke: var(--border); stroke-width: 1.4; fill: none; }
+    #minimal-foundation-er .edge.active { stroke: var(--viz-series-1); stroke-width: 3; }
+    #minimal-foundation-er .edge-label { fill: var(--muted-foreground); font-size: 10px; text-anchor: middle; }
+    #minimal-foundation-er .node { cursor: pointer; }
+    #minimal-foundation-er .node rect { fill: color-mix(in srgb, var(--viz-series-1) 12%, transparent); stroke: var(--border); stroke-width: 1; rx: 8; }
+    #minimal-foundation-er .node.relation rect { fill: color-mix(in srgb, var(--viz-series-2) 13%, transparent); }
+    #minimal-foundation-er .node.event rect { fill: color-mix(in srgb, var(--viz-series-3) 13%, transparent); }
+    #minimal-foundation-er .node.active rect { stroke: var(--viz-series-1); stroke-width: 3; }
+    #minimal-foundation-er .node text { fill: var(--foreground); text-anchor: middle; pointer-events: none; font-weight: 500; }
+    #minimal-foundation-er .node .sub { fill: var(--muted-foreground); font-size: 9px; font-weight: 400; }
+    #minimal-foundation-er .lane { fill: var(--muted-foreground); font-size: 11px; font-weight: 500; }
+    #minimal-foundation-er .detail-title { margin: 0 0 4px; }
+    #minimal-foundation-er .detail-grain { color: var(--muted-foreground); margin-bottom: 10px; }
+    #minimal-foundation-er .detail-list { margin: 0; padding-left: 18px; }
+    #minimal-foundation-er .detail-list li { margin: 5px 0; }
+    #minimal-foundation-er .mfe-flow { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 8px; margin-top: 12px; }
+    #minimal-foundation-er .mfe-step { border-top: 3px solid var(--border); padding-top: 8px; }
+    #minimal-foundation-er .mfe-step strong { display: block; margin-bottom: 4px; }
+    #minimal-foundation-er .mfe-rule { border-left: 3px solid var(--viz-series-1); padding-left: 12px; margin: 12px 0; }
+    #minimal-foundation-er .mfe-compare { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+    #minimal-foundation-er .mfe-compare &gt; div { border-top: 3px solid var(--border); padding-top: 8px; }
+    #minimal-foundation-er code { white-space: nowrap; }
+    @media (max-width: 680px) {
+      #minimal-foundation-er .mfe-layout, #minimal-foundation-er .mfe-flow, #minimal-foundation-er .mfe-compare { grid-template-columns: 1fr; }
+    }
+    @media print {
+      #minimal-foundation-er .viz-controls { display: none; }
+      #minimal-foundation-er [data-panel] { display: block !important; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;viz-controls&quot; role=&quot;tablist&quot; aria-label=&quot;最小数据基座视图&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; role=&quot;tab&quot; data-tab=&quot;all&quot; aria-selected=&quot;true&quot;&gt;一版看全&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;er&quot; aria-selected=&quot;false&quot;&gt;最小ER&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;tables&quot; aria-selected=&quot;false&quot;&gt;表与字段&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;pdf&quot; aria-selected=&quot;false&quot;&gt;PDF验证&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;proof&quot; aria-selected=&quot;false&quot;&gt;压缩论证&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;growth&quot; aria-selected=&quot;false&quot;&gt;扩展边界&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;mfe-lead&quot;&gt;目标版本：10张业务表 + 1张结构治理表。核心关系保持关系型，低频和异构属性进入JSON。&lt;/p&gt;
+
+  &lt;section class=&quot;mfe-section&quot; data-panel=&quot;er&quot;&gt;
+    &lt;h2&gt;1. 最小业务ER&lt;/h2&gt;
+    &lt;p class=&quot;mfe-caption&quot;&gt;点击任意节点查看行粒度、主键、核心外键和保留理由。&lt;/p&gt;
+    &lt;div class=&quot;mfe-layout&quot;&gt;
+      &lt;div&gt;
+        &lt;svg viewBox=&quot;0 0 840 560&quot; role=&quot;img&quot; aria-labelledby=&quot;mfe-title mfe-desc&quot;&gt;
+          &lt;title id=&quot;mfe-title&quot;&gt;英语机构最小数据基座ER&lt;/title&gt;
+          &lt;desc id=&quot;mfe-desc&quot;&gt;十张业务表覆盖人员、学习群组、内容、作业、提交、答题与反馈。&lt;/desc&gt;
+          &lt;defs&gt;
+            &lt;marker id=&quot;mfe-arrow&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;6&quot; markerHeight=&quot;6&quot; orient=&quot;auto-start-reverse&quot;&gt;&lt;path d=&quot;M0 0L10 5L0 10z&quot; fill=&quot;var(--border)&quot;&gt;&lt;/path&gt;&lt;/marker&gt;
+            &lt;marker id=&quot;mfe-arrow-active&quot; viewBox=&quot;0 0 10 10&quot; refX=&quot;9&quot; refY=&quot;5&quot; markerWidth=&quot;6&quot; markerHeight=&quot;6&quot; orient=&quot;auto-start-reverse&quot;&gt;&lt;path d=&quot;M0 0L10 5L0 10z&quot; fill=&quot;var(--viz-series-1)&quot;&gt;&lt;/path&gt;&lt;/marker&gt;
+          &lt;/defs&gt;
+          &lt;text class=&quot;lane&quot; x=&quot;14&quot; y=&quot;28&quot;&gt;主体层：人以及人与组织的关系&lt;/text&gt;
+          &lt;text class=&quot;lane&quot; x=&quot;14&quot; y=&quot;190&quot;&gt;内容与布置层：可复用内容组成一次任务&lt;/text&gt;
+          &lt;text class=&quot;lane&quot; x=&quot;14&quot; y=&quot;368&quot;&gt;事实与反馈层：真实提交、逐题答案与沟通&lt;/text&gt;
+
+          &lt;path class=&quot;edge&quot; data-edge=&quot;person-relation&quot; d=&quot;M165 85H245&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;&lt;text class=&quot;edge-label&quot; x=&quot;205&quot; y=&quot;76&quot;&gt;1:N&lt;/text&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;person-member&quot; d=&quot;M105 117V145H365V86&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;group-member&quot; d=&quot;M550 86H485&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;group-activity&quot; d=&quot;M625 117V220&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;content-activity_item&quot; d=&quot;M190 264H290&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;activity-activity_item&quot; d=&quot;M565 264H450&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;activity-submission&quot; d=&quot;M625 304V402&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;person-submission&quot; d=&quot;M105 117V340H570V402&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;submission-answer&quot; d=&quot;M565 436H450&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;activity_item-answer&quot; d=&quot;M370 304V402&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;submission-feedback&quot; d=&quot;M705 436H742V502H590&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+          &lt;path class=&quot;edge&quot; data-edge=&quot;person-feedback&quot; d=&quot;M105 117V525H430&quot; marker-end=&quot;url(#mfe-arrow)&quot;&gt;&lt;/path&gt;
+
+          &lt;g class=&quot;node&quot; data-node=&quot;person&quot; transform=&quot;translate(25 55)&quot;&gt;&lt;rect width=&quot;140&quot; height=&quot;62&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;70&quot; y=&quot;26&quot;&gt;人员&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;70&quot; y=&quot;46&quot;&gt;person&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node relation&quot; data-node=&quot;person_relation&quot; transform=&quot;translate(245 55)&quot;&gt;&lt;rect width=&quot;170&quot; height=&quot;62&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;85&quot; y=&quot;26&quot;&gt;人员关系&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;85&quot; y=&quot;46&quot;&gt;person_relation&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node&quot; data-node=&quot;learning_group&quot; transform=&quot;translate(550 55)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;62&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;26&quot;&gt;学习群组&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;46&quot;&gt;learning_group&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node relation&quot; data-node=&quot;group_member&quot; transform=&quot;translate(335 55)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;62&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;26&quot;&gt;群组成员&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;46&quot;&gt;group_member&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node&quot; data-node=&quot;content_item&quot; transform=&quot;translate(25 230)&quot;&gt;&lt;rect width=&quot;165&quot; height=&quot;68&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;82.5&quot; y=&quot;28&quot;&gt;统一内容&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;82.5&quot; y=&quot;49&quot;&gt;content_item&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node relation&quot; data-node=&quot;activity_item&quot; transform=&quot;translate(290 230)&quot;&gt;&lt;rect width=&quot;160&quot; height=&quot;68&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;80&quot; y=&quot;28&quot;&gt;任务内容&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;80&quot; y=&quot;49&quot;&gt;activity_item&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node event&quot; data-node=&quot;activity&quot; transform=&quot;translate(565 230)&quot;&gt;&lt;rect width=&quot;150&quot; height=&quot;74&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;75&quot; y=&quot;30&quot;&gt;作业／测评&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;75&quot; y=&quot;52&quot;&gt;activity&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node event&quot; data-node=&quot;answer&quot; transform=&quot;translate(280 402)&quot;&gt;&lt;rect width=&quot;170&quot; height=&quot;68&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;85&quot; y=&quot;28&quot;&gt;逐题答案&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;85&quot; y=&quot;49&quot;&gt;answer&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node event&quot; data-node=&quot;submission&quot; transform=&quot;translate(565 402)&quot;&gt;&lt;rect width=&quot;140&quot; height=&quot;68&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;70&quot; y=&quot;28&quot;&gt;学员提交&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;70&quot; y=&quot;49&quot;&gt;submission&lt;/text&gt;&lt;/g&gt;
+          &lt;g class=&quot;node event&quot; data-node=&quot;feedback&quot; transform=&quot;translate(430 495)&quot;&gt;&lt;rect width=&quot;160&quot; height=&quot;58&quot;&gt;&lt;/rect&gt;&lt;text x=&quot;80&quot; y=&quot;25&quot;&gt;反馈&lt;/text&gt;&lt;text class=&quot;sub&quot; x=&quot;80&quot; y=&quot;44&quot;&gt;feedback&lt;/text&gt;&lt;/g&gt;
+        &lt;/svg&gt;
+      &lt;/div&gt;
+      &lt;section class=&quot;card&quot; aria-live=&quot;polite&quot;&gt;
+        &lt;h3 class=&quot;detail-title&quot; id=&quot;mfe-detail-title&quot;&gt;人员 person&lt;/h3&gt;
+        &lt;div class=&quot;detail-grain&quot; id=&quot;mfe-detail-grain&quot;&gt;一行 = 一名学员、家长或员工&lt;/div&gt;
+        &lt;ul class=&quot;detail-list&quot; id=&quot;mfe-detail-list&quot;&gt;&lt;/ul&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;mfe-rule&quot;&gt;&lt;strong&gt;关系型边界：&lt;/strong&gt;人员、群组、任务、提交、答案之间用外键；联系方式、选项、评分量规等异构属性使用JSON。&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;mfe-section&quot; data-panel=&quot;tables&quot;&gt;
+    &lt;h2&gt;2. 表与最小字段&lt;/h2&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;表&lt;/th&gt;&lt;th&gt;必须字段&lt;/th&gt;&lt;th&gt;JSON扩展字段&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;mfe-fields&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3&gt;物理治理表&lt;/h3&gt;
+    &lt;p&gt;&lt;code&gt;schema_version(version_no, description, applied_at)&lt;/code&gt;：只负责每机构数据库的升级状态，不进入业务ER。&lt;/p&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;mfe-section&quot; data-panel=&quot;pdf&quot;&gt;
+    &lt;h2&gt;3. 用Level D PDF验证&lt;/h2&gt;
+    &lt;div class=&quot;mfe-flow&quot;&gt;
+      &lt;div class=&quot;mfe-step&quot;&gt;&lt;strong&gt;① PDF资源&lt;/strong&gt;&lt;span&gt;&lt;code&gt;content_item&lt;/code&gt;&lt;br&gt;type=resource&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;mfe-step&quot;&gt;&lt;strong&gt;② 19篇文章&lt;/strong&gt;&lt;span&gt;&lt;code&gt;content_item&lt;/code&gt;&lt;br&gt;type=passage&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;mfe-step&quot;&gt;&lt;strong&gt;③ 题目&lt;/strong&gt;&lt;span&gt;&lt;code&gt;content_item&lt;/code&gt;&lt;br&gt;type=question&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;mfe-step&quot;&gt;&lt;strong&gt;④ 老师布置&lt;/strong&gt;&lt;span&gt;&lt;code&gt;activity&lt;/code&gt; + &lt;code&gt;activity_item&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;mfe-step&quot;&gt;&lt;strong&gt;⑤ 提交反馈&lt;/strong&gt;&lt;span&gt;&lt;code&gt;submission&lt;/code&gt; → &lt;code&gt;answer&lt;/code&gt; → &lt;code&gt;feedback&lt;/code&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;实际对象&lt;/th&gt;&lt;th&gt;示例编号&lt;/th&gt;&lt;th&gt;登记方式&lt;/th&gt;&lt;th&gt;是否新增表&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;完整PDF&lt;/td&gt;&lt;td&gt;&lt;code&gt;RES001&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_item&lt;/code&gt;，父级为空&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;Look Out!文章&lt;/td&gt;&lt;td&gt;&lt;code&gt;PASS001&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_item&lt;/code&gt;，父级为RES001&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;4道选择题&lt;/td&gt;&lt;td&gt;&lt;code&gt;Q001-Q004&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_item&lt;/code&gt;，选项和答案进入payload_json&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;拼写与造句&lt;/td&gt;&lt;td&gt;&lt;code&gt;Q005-Q012&lt;/code&gt;&lt;/td&gt;&lt;td&gt;每个可独立评分任务一行&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;D级阅读作业01&lt;/td&gt;&lt;td&gt;&lt;code&gt;ACT001&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;activity&lt;/code&gt;&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;题目顺序与分值&lt;/td&gt;&lt;td&gt;&lt;code&gt;AI001...&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;activity_item&lt;/code&gt;&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;张同学照片提交&lt;/td&gt;&lt;td&gt;&lt;code&gt;SUB001&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;submission&lt;/code&gt;&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;逐题答案与批改&lt;/td&gt;&lt;td&gt;&lt;code&gt;ANS001...&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;answer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;家长学情反馈&lt;/td&gt;&lt;td&gt;&lt;code&gt;FB001&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;feedback&lt;/code&gt;&lt;/td&gt;&lt;td&gt;否&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;div class=&quot;mfe-rule&quot;&gt;&lt;strong&gt;验证结论：&lt;/strong&gt;这10张业务表已完整覆盖资源拆解、作业布置、学生提交、逐题评分和家长反馈，不需要为PDF、文章、选择题、拼写题分别建表。&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;mfe-section&quot; data-panel=&quot;proof&quot;&gt;
+    &lt;h2&gt;4. 压缩论证&lt;/h2&gt;
+    &lt;div class=&quot;mfe-compare&quot;&gt;
+      &lt;div&gt;&lt;strong&gt;原物理模型&lt;/strong&gt;&lt;p&gt;18张表&lt;/p&gt;&lt;span class=&quot;mfe-caption&quot;&gt;对象类型分表，关系具体化。&lt;/span&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;最小业务模型&lt;/strong&gt;&lt;p&gt;10张表&lt;/p&gt;&lt;span class=&quot;mfe-caption&quot;&gt;人员、群组、内容分别统一建模。&lt;/span&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;strong&gt;实际部署&lt;/strong&gt;&lt;p&gt;11张表&lt;/p&gt;&lt;span class=&quot;mfe-caption&quot;&gt;额外保留1张结构版本表。&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;压缩动作&lt;/th&gt;&lt;th&gt;原表&lt;/th&gt;&lt;th&gt;新表&lt;/th&gt;&lt;th&gt;成立条件&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;统一人员&lt;/td&gt;&lt;td&gt;student、guardian、staff&lt;/td&gt;&lt;td&gt;person&lt;/td&gt;&lt;td&gt;差异属性放profile_json&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;统一人员关系&lt;/td&gt;&lt;td&gt;family、student_guardian&lt;/td&gt;&lt;td&gt;person_relation&lt;/td&gt;&lt;td&gt;家庭来源暂不作为独立分析实体&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;统一学习组织&lt;/td&gt;&lt;td&gt;course、class_group&lt;/td&gt;&lt;td&gt;learning_group&lt;/td&gt;&lt;td&gt;用parent_group_id表达课程与班级&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;统一内容&lt;/td&gt;&lt;td&gt;learning_resource、content_unit、question、skill_point&lt;/td&gt;&lt;td&gt;content_item&lt;/td&gt;&lt;td&gt;用item_type、parent_item_id和payload_json区分&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;保留关系事实&lt;/td&gt;&lt;td&gt;assessment_question&lt;/td&gt;&lt;td&gt;activity_item&lt;/td&gt;&lt;td&gt;题目复用、顺序和分值必须关系化&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;h3&gt;为什么不能继续合并&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;若继续合并&lt;/th&gt;&lt;th&gt;直接后果&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;activity + activity_item&lt;/td&gt;&lt;td&gt;题目列表只能塞进JSON，失去外键、复用与逐题统计&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;submission + answer&lt;/td&gt;&lt;td&gt;无法形成一对多逐题记录，错因分析失效&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;submission + feedback&lt;/td&gt;&lt;td&gt;一次提交无法多次沟通和跟进&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;person + person_relation&lt;/td&gt;&lt;td&gt;多家长、多孩子关系无法可靠表达&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;learning_group + group_member&lt;/td&gt;&lt;td&gt;转班、退班和历史成员关系丢失&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;mfe-section&quot; data-panel=&quot;growth&quot;&gt;
+    &lt;h2&gt;5. 扩展边界&lt;/h2&gt;
+    &lt;p class=&quot;mfe-caption&quot;&gt;先稳定使用统一表；只有满足明确触发条件时才拆表。&lt;/p&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;触发条件&lt;/th&gt;&lt;th&gt;届时拆分&lt;/th&gt;&lt;th&gt;当前不拆原因&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;员工出现薪资、合同和合规权限&lt;/td&gt;&lt;td&gt;从person拆staff_profile&lt;/td&gt;&lt;td&gt;当前只需责任人和教师身份&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;家庭成为营销、订单和付款主体&lt;/td&gt;&lt;td&gt;新增family/account&lt;/td&gt;&lt;td&gt;当前围绕教学与测评&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;课程产品需要定价、课时包和版本&lt;/td&gt;&lt;td&gt;从learning_group拆course_product&lt;/td&gt;&lt;td&gt;当前只需课程班级层级&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;题库超过十万题且有复杂检索&lt;/td&gt;&lt;td&gt;从content_item拆question&lt;/td&gt;&lt;td&gt;当前统一内容更利于快速落地&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;一道题正式统计多个能力点&lt;/td&gt;&lt;td&gt;新增item_skill_relation&lt;/td&gt;&lt;td&gt;当前可用primary_skill_code&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;反馈需要审批、版本和多渠道送达&lt;/td&gt;&lt;td&gt;拆report与communication&lt;/td&gt;&lt;td&gt;当前一次反馈一行足够&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;div class=&quot;mfe-rule&quot;&gt;&lt;strong&gt;扩展原则：&lt;/strong&gt;新增表必须同时具有独立业务含义、独立生命周期、清晰行粒度，并能解决已经发生的重复或统计问题。&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;minimal-foundation-er&#x27;);
+      const details = {
+        person:[&#x27;人员 person&#x27;,&#x27;一行 = 一名学员、家长或员工&#x27;,[&#x27;PK：person_id&#x27;,&#x27;person_type区分student／guardian／staff&#x27;,&#x27;联系方式与低频档案进入JSON&#x27;,&#x27;所有行为最终追溯到同一人员编号&#x27;]],
+        person_relation:[&#x27;人员关系 person_relation&#x27;,&#x27;一行 = 两个人之间的一种关系&#x27;,[&#x27;PK：relation_id&#x27;,&#x27;FK：from_person_id、to_person_id&#x27;,&#x27;表达父母、孩子、主要联系人和反馈权限&#x27;]],
+        learning_group:[&#x27;学习群组 learning_group&#x27;,&#x27;一行 = 一个课程或班级&#x27;,[&#x27;PK：group_id&#x27;,&#x27;FK：parent_group_id、owner_person_id&#x27;,&#x27;group_type区分course／class&#x27;,&#x27;课程与班级使用同一父子层级&#x27;]],
+        group_member:[&#x27;群组成员 group_member&#x27;,&#x27;一行 = 一个人在一个群组中的一段成员关系&#x27;,[&#x27;PK：group_member_id&#x27;,&#x27;FK：group_id、person_id&#x27;,&#x27;保留加入、退出、教师或学员角色&#x27;]],
+        content_item:[&#x27;统一内容 content_item&#x27;,&#x27;一行 = 一个资源、文章、题目或能力标签&#x27;,[&#x27;PK：item_id&#x27;,&#x27;FK：parent_item_id&#x27;,&#x27;item_type区分resource／passage／question／skill&#x27;,&#x27;选项、答案、量规等进入payload_json&#x27;]],
+        activity:[&#x27;作业／测评 activity&#x27;,&#x27;一行 = 一次发布给群组的任务&#x27;,[&#x27;PK：activity_id&#x27;,&#x27;FK：group_id、assigned_by&#x27;,&#x27;保存布置、截止、方式、评分规则和状态&#x27;]],
+        activity_item:[&#x27;任务内容 activity_item&#x27;,&#x27;一行 = 一个内容题目在一次任务中的使用&#x27;,[&#x27;PK：activity_item_id&#x27;,&#x27;FK：activity_id、content_item_id&#x27;,&#x27;保存顺序、分值和是否必做&#x27;,&#x27;解决任务与题目的多对多&#x27;]],
+        submission:[&#x27;学员提交 submission&#x27;,&#x27;一行 = 一名学员对一次任务的提交&#x27;,[&#x27;PK：submission_id&#x27;,&#x27;FK：activity_id、student_id、graded_by&#x27;,&#x27;保存附件、提交状态、时间和总分&#x27;]],
+        answer:[&#x27;逐题答案 answer&#x27;,&#x27;一行 = 一次提交对一道任务题的最终回答&#x27;,[&#x27;PK：answer_id&#x27;,&#x27;FK：submission_id、activity_item_id、graded_by&#x27;,&#x27;保存回答、得分、正误、错因和点评&#x27;]],
+        feedback:[&#x27;反馈 feedback&#x27;,&#x27;一行 = 针对一次提交的一次反馈行为&#x27;,[&#x27;PK：feedback_id&#x27;,&#x27;FK：submission_id、recipient_person_id、owner_person_id&#x27;,&#x27;允许报告、电话、面谈和多次跟进&#x27;]]
+      };
+      const fields = [
+        [&#x27;person&#x27;,&#x27;person_id, person_type, person_name, status, created_at, updated_at&#x27;,&#x27;contact_json, profile_json&#x27;],
+        [&#x27;person_relation&#x27;,&#x27;relation_id, from_person_id, to_person_id, relation_type, is_primary, status&#x27;,&#x27;permission_json&#x27;],
+        [&#x27;learning_group&#x27;,&#x27;group_id, parent_group_id, group_type, group_name, level_value, owner_person_id, status&#x27;,&#x27;config_json&#x27;],
+        [&#x27;group_member&#x27;,&#x27;group_member_id, group_id, person_id, member_role, joined_at, left_at, status&#x27;,&#x27;-&#x27;],
+        [&#x27;content_item&#x27;,&#x27;item_id, parent_item_id, item_type, title, body_text, source_locator, version, status&#x27;,&#x27;payload_json&#x27;],
+        [&#x27;activity&#x27;,&#x27;activity_id, group_id, name, activity_type, assigned_by, assigned_at, due_at, delivery_mode, scoring_rule, status&#x27;,&#x27;config_json&#x27;],
+        [&#x27;activity_item&#x27;,&#x27;activity_item_id, activity_id, content_item_id, item_order, score, is_required&#x27;,&#x27;config_json&#x27;],
+        [&#x27;submission&#x27;,&#x27;submission_id, activity_id, student_id, status, submitted_at, submission_uri, final_score, graded_by, graded_at&#x27;,&#x27;metadata_json&#x27;],
+        [&#x27;answer&#x27;,&#x27;answer_id, submission_id, activity_item_id, grading_status, score, is_correct, error_code, graded_by, graded_at&#x27;,&#x27;response_json, comment_json&#x27;],
+        [&#x27;feedback&#x27;,&#x27;feedback_id, submission_id, recipient_person_id, owner_person_id, feedback_type, summary, status, feedback_at, follow_up_at&#x27;,&#x27;detail_json&#x27;]
+      ];
+      const row = cells =&gt; `&lt;tr&gt;${cells.map(c=&gt;`&lt;td&gt;${c}&lt;/td&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;`;
+      root.querySelector(&#x27;#mfe-fields&#x27;).innerHTML = fields.map(r=&gt;row([`&lt;code&gt;${r[0]}&lt;/code&gt;`,r[1],r[2]])).join(&#x27;&#x27;);
+      const title=root.querySelector(&#x27;#mfe-detail-title&#x27;);
+      const grain=root.querySelector(&#x27;#mfe-detail-grain&#x27;);
+      const list=root.querySelector(&#x27;#mfe-detail-list&#x27;);
+      function selectNode(key){
+        const d=details[key];
+        root.querySelectorAll(&#x27;.node&#x27;).forEach(n=&gt;n.classList.toggle(&#x27;active&#x27;,n.dataset.node===key));
+        title.textContent=d[0]; grain.textContent=d[1];
+        list.replaceChildren(...d[2].map(x=&gt;{const li=document.createElement(&#x27;li&#x27;);li.textContent=x;return li;}));
+      }
+      root.querySelectorAll(&#x27;.node&#x27;).forEach(n=&gt;{n.setAttribute(&#x27;role&#x27;,&#x27;button&#x27;);n.setAttribute(&#x27;aria-label&#x27;,`查看${details[n.dataset.node][0]}`);n.addEventListener(&#x27;click&#x27;,()=&gt;selectNode(n.dataset.node));});
+      root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;{
+        const tab=button.dataset.tab;
+        root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach(b=&gt;{const active=b===button;b.classList.toggle(&#x27;btn-primary&#x27;,active);b.setAttribute(&#x27;aria-selected&#x27;,String(active));});
+        root.querySelectorAll(&#x27;[data-panel]&#x27;).forEach(p=&gt;p.classList.toggle(&#x27;mfe-hidden&#x27;,tab!==&#x27;all&#x27;&amp;&amp;p.dataset.panel!==tab));
+        root.querySelectorAll(&#x27;.edge&#x27;).forEach(e=&gt;{const active=tab===&#x27;pdf&#x27;&amp;&amp;[&#x27;content-activity_item&#x27;,&#x27;activity-activity_item&#x27;,&#x27;activity-submission&#x27;,&#x27;submission-answer&#x27;,&#x27;submission-feedback&#x27;].includes(e.dataset.edge);e.classList.toggle(&#x27;active&#x27;,active);e.setAttribute(&#x27;marker-end&#x27;,active?&#x27;url(#mfe-arrow-active)&#x27;:&#x27;url(#mfe-arrow)&#x27;);});
+      }));
+      selectNode(&#x27;person&#x27;);
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

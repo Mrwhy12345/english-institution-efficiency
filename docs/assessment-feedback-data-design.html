@@ -928,10 +928,14 @@ html&gt;body{padding:0}&lt;/style&gt;
     #data-model-complete .dmc-count { color: var(--muted-foreground); margin-left: 6px; }
     #data-model-complete .dmc-principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
     #data-model-complete .dmc-principle { border-top: 2px solid var(--border); padding-top: 8px; }
+    #data-model-complete .dmc-deploy-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+    #data-model-complete .dmc-deploy-group { border-top: 3px solid var(--border); padding-top: 8px; }
+    #data-model-complete .dmc-deploy-group strong { display: block; margin-bottom: 6px; }
+    #data-model-complete .dmc-deploy-group code { display: block; margin: 4px 0; white-space: normal; }
     #data-model-complete code { white-space: nowrap; }
     @media (max-width: 700px) {
       #data-model-complete .dmc-diagram-wrap { grid-template-columns: 1fr; }
-      #data-model-complete .dmc-story, #data-model-complete .dmc-principles { grid-template-columns: 1fr; }
+      #data-model-complete .dmc-story, #data-model-complete .dmc-principles, #data-model-complete .dmc-deploy-grid { grid-template-columns: 1fr; }
     }
     @media print {
       #data-model-complete .viz-controls { display: none; }
@@ -942,16 +946,17 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;div class=&quot;viz-controls&quot; role=&quot;tablist&quot; aria-label=&quot;数据设计视图&quot;&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; role=&quot;tab&quot; data-tab=&quot;all&quot; aria-selected=&quot;true&quot;&gt;一版看全&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;structure&quot; aria-selected=&quot;false&quot;&gt;结构关系&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;deployment&quot; aria-selected=&quot;false&quot;&gt;部署ER（18表）&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;dictionary&quot; aria-selected=&quot;false&quot;&gt;字段字典&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;validation&quot; aria-selected=&quot;false&quot;&gt;指标验证&lt;/button&gt;
     &lt;button type=&quot;button&quot; class=&quot;btn&quot; role=&quot;tab&quot; data-tab=&quot;example&quot; aria-selected=&quot;false&quot;&gt;学员实例&lt;/button&gt;
   &lt;/div&gt;
 
-  &lt;p class=&quot;dmc-lead&quot;&gt;默认“一版看全”展开全部内容；切换页签可专注查看某一层。打印时始终展开所有内容。&lt;/p&gt;
+  &lt;p class=&quot;dmc-lead&quot;&gt;默认“一版看全”展开全部内容；“结构关系”展示核心业务模型，“部署ER”解释为什么实际MySQL中是18张表。打印时始终展开全部。&lt;/p&gt;
 
   &lt;section class=&quot;dmc-section&quot; data-panel=&quot;structure&quot;&gt;
     &lt;h2&gt;1. 设计边界与工程原则&lt;/h2&gt;
-    &lt;p class=&quot;dmc-caption&quot;&gt;第二轮使用真实阅读作业验证：复用六类主数据，新增教学资源、内容单元和六张测评反馈表，共八张领域业务表。&lt;/p&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;核心业务视图由六类主数据与八张领域业务表组成，共14张概念表；部署视图另外显式表达家庭、多对多关系与结构版本。&lt;/p&gt;
     &lt;div class=&quot;dmc-principles&quot;&gt;
       &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;一种事实一张表&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;测评定义、学员参加、逐题作答不能混在同一行。&lt;/span&gt;&lt;/div&gt;
       &lt;div class=&quot;dmc-principle&quot;&gt;&lt;strong&gt;一行只有一个粒度&lt;/strong&gt;&lt;br&gt;&lt;span class=&quot;text-muted&quot;&gt;先说清“一行代表什么”，再决定字段。&lt;/span&gt;&lt;/div&gt;
@@ -1025,14 +1030,62 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;验证项&lt;/th&gt;&lt;th&gt;结论&lt;/th&gt;&lt;th&gt;工程处理&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-erchecks&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
   &lt;/section&gt;
 
+  &lt;section class=&quot;dmc-section&quot; data-panel=&quot;deployment&quot;&gt;
+    &lt;h2&gt;2. MySQL部署ER：为什么是18张表&lt;/h2&gt;
+    &lt;p class=&quot;dmc-caption&quot;&gt;14张概念表用于理解业务；部署时增加4张物理必需表。没有把招生、订单、课消、排课或财务提前塞进当前版本。&lt;/p&gt;
+
+    &lt;div class=&quot;dmc-deploy-grid&quot;&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;结构治理 · 1张&lt;/strong&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;span class=&quot;text-muted&quot;&gt;只记录数据库结构版本，不属于业务ER。&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;客户与组织 · 9张&lt;/strong&gt;&lt;code&gt;family&lt;/code&gt;&lt;code&gt;guardian&lt;/code&gt;&lt;code&gt;student&lt;/code&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;code&gt;staff&lt;/code&gt;&lt;code&gt;course&lt;/code&gt;&lt;code&gt;class_group&lt;/code&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;code&gt;skill_point&lt;/code&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;内容与测评 · 7张&lt;/strong&gt;&lt;code&gt;learning_resource&lt;/code&gt;&lt;code&gt;content_unit&lt;/code&gt;&lt;code&gt;question&lt;/code&gt;&lt;code&gt;assessment&lt;/code&gt;&lt;code&gt;assessment_question&lt;/code&gt;&lt;code&gt;assessment_attempt&lt;/code&gt;&lt;code&gt;student_answer&lt;/code&gt;&lt;/div&gt;
+      &lt;div class=&quot;dmc-deploy-group&quot;&gt;&lt;strong&gt;反馈闭环 · 1张&lt;/strong&gt;&lt;code&gt;feedback&lt;/code&gt;&lt;span class=&quot;text-muted&quot;&gt;关联学员作业、家长与负责人。&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;从14张到18张的逐项论证&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;新增表&lt;/th&gt;&lt;th&gt;一行代表什么&lt;/th&gt;&lt;th&gt;不增加会发生什么&lt;/th&gt;&lt;th&gt;结论&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;family&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个家庭客户单元&lt;/td&gt;&lt;td&gt;兄弟姐妹的来源、负责人和家庭状态会在学员、家长中重复&lt;/td&gt;&lt;td&gt;保留，业务主数据&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员与一名家长的一种关系&lt;/td&gt;&lt;td&gt;无法表达多家长、多孩子、主要联系人和反馈接收权限&lt;/td&gt;&lt;td&gt;保留，必要多对多表&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员的一段入班记录&lt;/td&gt;&lt;td&gt;无法表达转班、退班、复班和历史班级归属&lt;/td&gt;&lt;td&gt;保留，必要关系历史表&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一次已应用的结构版本&lt;/td&gt;&lt;td&gt;每机构一库后，无法判断哪些机构库完成了哪次升级&lt;/td&gt;&lt;td&gt;保留，物理治理表&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;18张表的主外键登记册&lt;/h3&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;表&lt;/th&gt;&lt;th&gt;粒度&lt;/th&gt;&lt;th&gt;主键&lt;/th&gt;&lt;th&gt;主要外键&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;
+      &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;&lt;code&gt;schema_version&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个结构版本&lt;/td&gt;&lt;td&gt;&lt;code&gt;version_no&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;&lt;code&gt;family&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个家庭&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;owner_staff_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;&lt;code&gt;guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名家长&lt;/td&gt;&lt;td&gt;&lt;code&gt;guardian_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;&lt;code&gt;student&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;family_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_guardian&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一条学员家长关系&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_id + guardian_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;学员、家长&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;&lt;code&gt;staff&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名员工&lt;/td&gt;&lt;td&gt;&lt;code&gt;staff_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;&lt;code&gt;course&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个课程产品&lt;/td&gt;&lt;td&gt;&lt;code&gt;course_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_group&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个教学班级&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;课程、主教教师&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_enrollment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一段学员入班历史&lt;/td&gt;&lt;td&gt;&lt;code&gt;class_enrollment_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;班级、学员&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;10&lt;/td&gt;&lt;td&gt;&lt;code&gt;skill_point&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个能力点&lt;/td&gt;&lt;td&gt;&lt;code&gt;skill_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;&lt;code&gt;parent_skill_id&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;11&lt;/td&gt;&lt;td&gt;&lt;code&gt;learning_resource&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个资源文件版本&lt;/td&gt;&lt;td&gt;&lt;code&gt;resource_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;-&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;12&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_unit&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一个可复用内容单元&lt;/td&gt;&lt;td&gt;&lt;code&gt;content_unit_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;教学资源&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;13&lt;/td&gt;&lt;td&gt;&lt;code&gt;question&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一道原子题目&lt;/td&gt;&lt;td&gt;&lt;code&gt;question_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;内容单元、能力点&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;14&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一次作业或测评&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;课程、班级、创建人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_question&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一道题在一次作业中的使用&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_question_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;测评、题目&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;&lt;code&gt;assessment_attempt&lt;/code&gt;&lt;/td&gt;&lt;td&gt;一名学员的一次提交&lt;/td&gt;&lt;td&gt;&lt;code&gt;attempt_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;测评、学员、评分人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;17&lt;/td&gt;&lt;td&gt;&lt;code&gt;student_answer&lt;/code&gt;&lt;/td&gt;&lt;td&gt;学员对一道题的最终答案&lt;/td&gt;&lt;td&gt;&lt;code&gt;answer_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;提交、测评题目、评分人&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;18&lt;/td&gt;&lt;td&gt;&lt;code&gt;feedback&lt;/code&gt;&lt;/td&gt;&lt;td&gt;针对一次提交的一次反馈&lt;/td&gt;&lt;td&gt;&lt;code&gt;feedback_id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;提交、家长、负责人&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+
+    &lt;h3 class=&quot;dmc-table-title&quot;&gt;关键关系链&lt;/h3&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;家庭链：&lt;/strong&gt; family → guardian／student → student_guardian。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;班级链：&lt;/strong&gt; course → class_group → class_enrollment → student。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;作业链：&lt;/strong&gt; learning_resource → content_unit → question → assessment_question → assessment。&lt;/div&gt;
+    &lt;div class=&quot;dmc-rule&quot;&gt;&lt;strong&gt;结果链：&lt;/strong&gt; student → assessment_attempt → student_answer → feedback → guardian。&lt;/div&gt;
+  &lt;/section&gt;
+
   &lt;section class=&quot;dmc-section&quot; data-panel=&quot;dictionary&quot;&gt;
-    &lt;h2&gt;2. 完整字段字典 &lt;span class=&quot;dmc-count&quot;&gt;8 张表，107 个字段&lt;/span&gt;&lt;/h2&gt;
+    &lt;h2&gt;3. 核心领域字段字典 &lt;span class=&quot;dmc-count&quot;&gt;8 张领域表，107 个字段&lt;/span&gt;&lt;/h2&gt;
     &lt;p class=&quot;dmc-caption&quot;&gt;&lt;span class=&quot;dmc-pk&quot;&gt;PK&lt;/span&gt; 是本行唯一编号；&lt;span class=&quot;dmc-fk&quot;&gt;FK&lt;/span&gt; 是指向另一张表的编号。字段类型为工程建议，可按实际数据库调整。&lt;/p&gt;
     &lt;div id=&quot;dmc-dictionaries&quot;&gt;&lt;/div&gt;
   &lt;/section&gt;
 
   &lt;section class=&quot;dmc-section&quot; data-panel=&quot;validation&quot;&gt;
-    &lt;h2&gt;3. 指标血缘与一致性验证&lt;/h2&gt;
+    &lt;h2&gt;4. 指标血缘与一致性验证&lt;/h2&gt;
     &lt;p class=&quot;dmc-caption&quot;&gt;用“能否从原始字段稳定计算”反向验证模型是否足够，而不是为想象中的需求提前建表。&lt;/p&gt;
     &lt;h3&gt;指标血缘&lt;/h3&gt;
     &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;序号&lt;/th&gt;&lt;th&gt;指标&lt;/th&gt;&lt;th&gt;原始字段与计算路径&lt;/th&gt;&lt;th&gt;结果&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;dmc-metrics&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
@@ -1043,7 +1096,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;/section&gt;
 
   &lt;section class=&quot;dmc-section&quot; data-panel=&quot;example&quot;&gt;
-    &lt;h2&gt;4. 一个学员实例：从测评到反馈&lt;/h2&gt;
+    &lt;h2&gt;5. 一个学员实例：从测评到反馈&lt;/h2&gt;
     &lt;p class=&quot;dmc-caption&quot;&gt;以下用真实 Level D 阅读作业的“Look Out!”单元展示编号怎样从PDF来源贯穿到家长反馈。&lt;/p&gt;
     &lt;div class=&quot;dmc-story&quot;&gt;
       &lt;div class=&quot;dmc-step&quot;&gt;&lt;strong&gt;① 拆解资源&lt;/strong&gt;&lt;span&gt;&lt;code&gt;RES001&lt;/code&gt; 中建立内容单元 &lt;code&gt;CU001&lt;/code&gt;。&lt;/span&gt;&lt;/div&gt;
