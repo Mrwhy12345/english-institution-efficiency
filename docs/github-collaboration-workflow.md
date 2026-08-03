@@ -130,6 +130,23 @@ gh pr view --json number,title,url,state,isDraft,commits
 
 ## 四、数据库协作附加规范
 
+### 4.1 权限边界
+
+- 建库、建表、迁移和授权：只由root执行；Codex准备文件，用户亲自 `SOURCE`。
+- 数据查询：只使用 `cyana_reader`，并通过SQL文件执行。
+- 数据新增、修改和删除：只使用 `cyana_writer`，并通过SQL文件执行。
+- 禁止在MySQL提示符中临时手敲业务数据增删改查。
+
+### 4.2 操作留痕
+
+所有数据内容操作统一使用：
+
+```bash
+./tools/run_mysql_script.sh <read|write> <client.cnf> <script.sql>
+```
+
+执行日志保存在 `.local/mysql-operation-logs/`，记录操作编号、时间、账号、脚本路径、SHA-256、Git提交号、完整输出和退出状态。日志可能包含学生信息，仅保存在本机，不上传GitHub。
+
 每次数据库变更至少包含以下一组文件：
 
 ```text

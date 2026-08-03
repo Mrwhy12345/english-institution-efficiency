@@ -83,3 +83,15 @@ inst_<机构英文简称>
 ```
 
 不要把root密码或机构应用密码提交到Git。
+
+## 数据内容操作
+
+建库、建表、迁移和授权必须由root账号执行，并由用户亲自 `SOURCE`。
+
+数据库内容的查询、新增、修改和删除必须使用SQL文件，并通过统一执行器留下本机操作日志：
+
+```bash
+./tools/run_mysql_script.sh <read|write> <client.cnf> <script.sql>
+```
+
+完整规范和模板见：`database/operations/README.md`。

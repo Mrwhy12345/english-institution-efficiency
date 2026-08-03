@@ -1,0 +1,10 @@
+-- operation: 验证业务数据变更
+-- verifies: <对应写操作SQL路径>
+-- expected_result: <数量、状态、总分差值或其他明确期望>
+
+USE `inst_cyana`;
+
+SELECT CURRENT_USER() AS verified_by, NOW(3) AS verified_at;
+
+-- 只使用SELECT验证写入数量、关键字段、外键关联和指标一致性。
+SELECT '<replace_with_verification_query>' AS pending_verification;
