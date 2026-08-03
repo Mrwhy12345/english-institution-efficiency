@@ -1,24 +1,11 @@
 from pathlib import Path
 
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_LEFT
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import (
-    BaseDocTemplate,
-    Frame,
-    HRFlowable,
-    KeepTogether,
-    PageBreak,
-    PageTemplate,
-    Paragraph,
-    Spacer,
-    Table,
-    TableStyle,
-)
+from reportlab.pdfgen import canvas
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,503 +14,311 @@ OUTPUT = ROOT / "output" / "pdf" / "cyana-data-foundation-adoption-brief.pdf"
 NAVY = colors.HexColor("#173B57")
 BLUE = colors.HexColor("#2F6B9A")
 LIGHT_BLUE = colors.HexColor("#EAF3F9")
-PALE_BLUE = colors.HexColor("#F5F9FC")
+PALE_BLUE = colors.HexColor("#F6FAFC")
 TEAL = colors.HexColor("#2D7A78")
 LIGHT_TEAL = colors.HexColor("#E9F5F3")
 GOLD = colors.HexColor("#C58B2A")
 LIGHT_GOLD = colors.HexColor("#FFF6E4")
-RED = colors.HexColor("#A94B45")
-LIGHT_RED = colors.HexColor("#FAEEEC")
 INK = colors.HexColor("#1F2D38")
 MUTED = colors.HexColor("#61717D")
-LINE = colors.HexColor("#D7E1E8")
+LINE = colors.HexColor("#D4E0E7")
 WHITE = colors.white
 
 
-def register_fonts():
-    candidates = [
-        ("CJK", "/System/Library/Fonts/STHeiti Light.ttc"),
-        ("CJK-Bold", "/System/Library/Fonts/STHeiti Medium.ttc"),
+pdfmetrics.registerFont(
+    TTFont("CJK", "/System/Library/Fonts/STHeiti Light.ttc", subfontIndex=0)
+)
+pdfmetrics.registerFont(
+    TTFont("CJK-Bold", "/System/Library/Fonts/STHeiti Medium.ttc", subfontIndex=0)
+)
+
+
+def wrap_text(text, font_name, font_size, max_width):
+    lines = []
+    current = ""
+    for char in text:
+        candidate = current + char
+        if current and pdfmetrics.stringWidth(candidate, font_name, font_size) > max_width:
+            lines.append(current)
+            current = char
+        else:
+            current = candidate
+    if current:
+        lines.append(current)
+    return lines
+
+
+def draw_centered_lines(c, text, x, y, width, height, font_name="CJK", font_size=7.5,
+                        color=INK, leading=None):
+    leading = leading or font_size * 1.45
+    lines = []
+    for paragraph in text.split("\n"):
+        lines.extend(wrap_text(paragraph, font_name, font_size, width - 8))
+    total_height = len(lines) * leading
+    baseline = y + (height + total_height) / 2 - leading
+    c.setFont(font_name, font_size)
+    c.setFillColor(color)
+    for line in lines:
+        c.drawCentredString(x + width / 2, baseline, line)
+        baseline -= leading
+
+
+def draw_left_lines(c, text, x, y, width, font_name="CJK", font_size=8,
+                    color=INK, leading=None, max_lines=None):
+    leading = leading or font_size * 1.5
+    lines = []
+    for paragraph in text.split("\n"):
+        lines.extend(wrap_text(paragraph, font_name, font_size, width))
+    if max_lines:
+        lines = lines[:max_lines]
+    c.setFont(font_name, font_size)
+    c.setFillColor(color)
+    cursor = y
+    for line in lines:
+        c.drawString(x, cursor, line)
+        cursor -= leading
+    return cursor
+
+
+def rounded_box(c, x, y, w, h, fill=LIGHT_BLUE, stroke=BLUE, radius=4,
+                line_width=0.8):
+    c.setFillColor(fill)
+    c.setStrokeColor(stroke)
+    c.setLineWidth(line_width)
+    c.roundRect(x, y, w, h, radius, fill=1, stroke=1)
+
+
+def arrow(c, x1, y1, x2, y2, color=BLUE):
+    c.setStrokeColor(color)
+    c.setFillColor(color)
+    c.setLineWidth(1)
+    c.line(x1, y1, x2, y2)
+    size = 3
+    c.line(x2, y2, x2 - size, y2 + size / 1.6)
+    c.line(x2, y2, x2 - size, y2 - size / 1.6)
+
+
+def section_label(c, number, title, x, y):
+    c.setFont("CJK-Bold", 10.5)
+    c.setFillColor(BLUE)
+    c.drawString(x, y, f"{number}  {title}")
+
+
+def stage_flow(c, x, y, total_width):
+    stages = [
+        ("市场", "定位·渠道·获客", LIGHT_BLUE),
+        ("营销", "咨询·试听·报名", LIGHT_BLUE),
+        ("教研", "课程·教材·题目", LIGHT_BLUE),
+        ("教学", "授课·作业·指导", LIGHT_TEAL),
+        ("测评", "作答·评分·错因", LIGHT_TEAL),
+        ("反馈", "学情·行动·沟通", LIGHT_GOLD),
     ]
-    for name, path in candidates:
-        pdfmetrics.registerFont(TTFont(name, path, subfontIndex=0))
+    gap = 17
+    box_w = (total_width - gap * 5) / 6
+    box_h = 37
+    for idx, (title, body, fill) in enumerate(stages):
+        bx = x + idx * (box_w + gap)
+        rounded_box(c, bx, y, box_w, box_h, fill=fill)
+        c.setFont("CJK-Bold", 8.5)
+        c.setFillColor(NAVY)
+        c.drawCentredString(bx + box_w / 2, y + 23, title)
+        c.setFont("CJK", 6.4)
+        c.setFillColor(MUTED)
+        c.drawCentredString(bx + box_w / 2, y + 10, body)
+        if idx < len(stages) - 1:
+            arrow(c, bx + box_w + 3, y + box_h / 2, bx + box_w + gap - 3, y + box_h / 2)
 
 
-register_fonts()
-
-styles = getSampleStyleSheet()
-styles.add(
-    ParagraphStyle(
-        name="CoverTitle",
-        fontName="CJK-Bold",
-        fontSize=27,
-        leading=36,
-        textColor=NAVY,
-        alignment=TA_LEFT,
-        spaceAfter=8 * mm,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="CoverSub",
-        fontName="CJK",
-        fontSize=12,
-        leading=20,
-        textColor=MUTED,
-        spaceAfter=8 * mm,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="H1CN",
-        fontName="CJK-Bold",
-        fontSize=18,
-        leading=25,
-        textColor=NAVY,
-        spaceBefore=2 * mm,
-        spaceAfter=5 * mm,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="H2CN",
-        fontName="CJK-Bold",
-        fontSize=12,
-        leading=18,
-        textColor=BLUE,
-        spaceBefore=4 * mm,
-        spaceAfter=2.5 * mm,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="BodyCN",
-        fontName="CJK",
-        fontSize=9.5,
-        leading=15.5,
-        textColor=INK,
-        spaceAfter=2.5 * mm,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="SmallCN",
-        fontName="CJK",
-        fontSize=8,
-        leading=12,
-        textColor=MUTED,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="BoxTitle",
-        fontName="CJK-Bold",
-        fontSize=9.5,
-        leading=13,
-        textColor=NAVY,
-        alignment=TA_CENTER,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="BoxBody",
-        fontName="CJK",
-        fontSize=7.7,
-        leading=11,
-        textColor=INK,
-        alignment=TA_CENTER,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="Callout",
-        fontName="CJK-Bold",
-        fontSize=12,
-        leading=19,
-        textColor=NAVY,
-        alignment=TA_LEFT,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="TableHead",
-        fontName="CJK-Bold",
-        fontSize=8,
-        leading=11,
-        textColor=WHITE,
-        alignment=TA_LEFT,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="TableCell",
-        fontName="CJK",
-        fontSize=7.5,
-        leading=11,
-        textColor=INK,
-        alignment=TA_LEFT,
-    )
-)
-
-
-def P(text, style="BodyCN"):
-    return Paragraph(text, styles[style])
-
-
-def arrow_cell():
-    return P("→", "BoxTitle")
-
-
-def box(title, body="", fill=LIGHT_BLUE, width=27):
-    content = [P(title, "BoxTitle")]
-    if body:
-        content += [Spacer(1, 1.5 * mm), P(body, "BoxBody")]
-    t = Table([[content]], colWidths=[width * mm], rowHeights=[24 * mm])
-    t.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, -1), fill),
-                ("BOX", (0, 0), (-1, -1), 0.8, BLUE),
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 3 * mm),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 3 * mm),
-                ("TOPPADDING", (0, 0), (-1, -1), 3 * mm),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 3 * mm),
-            ]
-        )
-    )
-    return t
-
-
-def flow_row(items, widths=None):
-    row = []
-    col_widths = []
-    for idx, item in enumerate(items):
-        row.append(item)
-        col_widths.append((widths[idx] if widths else 27) * mm)
-        if idx < len(items) - 1:
-            row.append(arrow_cell())
-            col_widths.append(7 * mm)
-    table = Table([row], colWidths=col_widths)
-    table.setStyle(
-        TableStyle(
-            [
-                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-                ("ALIGN", (0, 0), (-1, -1), "CENTER"),
-                ("LEFTPADDING", (0, 0), (-1, -1), 0),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-                ("TOPPADDING", (0, 0), (-1, -1), 0),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
-            ]
-        )
-    )
-    return table
-
-
-def callout(text, fill=LIGHT_GOLD, border=GOLD):
-    t = Table([[P(text, "Callout")]], colWidths=[166 * mm])
-    t.setStyle(
-        TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, -1), fill),
-                ("BOX", (0, 0), (-1, -1), 0.8, border),
-                ("LEFTPADDING", (0, 0), (-1, -1), 6 * mm),
-                ("RIGHTPADDING", (0, 0), (-1, -1), 6 * mm),
-                ("TOPPADDING", (0, 0), (-1, -1), 5 * mm),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 5 * mm),
-            ]
-        )
-    )
-    return t
-
-
-def data_table(headers, rows, widths, header_bg=NAVY):
-    data = [[P(h, "TableHead") for h in headers]]
-    for row in rows:
-        data.append([P(str(cell), "TableCell") for cell in row])
-    t = Table(data, colWidths=[w * mm for w in widths], repeatRows=1)
-    commands = [
-        ("BACKGROUND", (0, 0), (-1, 0), header_bg),
-        ("GRID", (0, 0), (-1, -1), 0.45, LINE),
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 2.5 * mm),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 2.5 * mm),
-        ("TOPPADDING", (0, 0), (-1, -1), 2.2 * mm),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 2.2 * mm),
+def workflow_panel(c, x, y, w, h):
+    rounded_box(c, x, y, w, h, fill=PALE_BLUE, stroke=LINE)
+    section_label(c, "01", "教学-反馈的四个子流程", x + 12, y + h - 20)
+    steps = [
+        ("1. 布置作业", "材料·题目·班级·分值", LIGHT_TEAL),
+        ("2. 收集反馈", "PDF·照片·答案·批注", LIGHT_TEAL),
+        ("3. 分析错题", "逐题评分·错因模式", LIGHT_BLUE),
+        ("4. 整理反馈", "表现·问题·建议·跟进", LIGHT_GOLD),
     ]
-    for idx in range(1, len(data)):
-        commands.append(("BACKGROUND", (0, idx), (-1, idx), WHITE if idx % 2 else PALE_BLUE))
-    t.setStyle(TableStyle(commands))
-    return t
+    gap = 14
+    inner_x = x + 12
+    inner_w = w - 24
+    box_w = (inner_w - gap * 3) / 4
+    box_y = y + 48
+    box_h = 52
+    for idx, (title, body, fill) in enumerate(steps):
+        bx = inner_x + idx * (box_w + gap)
+        rounded_box(c, bx, box_y, box_w, box_h, fill=fill)
+        c.setFont("CJK-Bold", 7.8)
+        c.setFillColor(NAVY)
+        c.drawCentredString(bx + box_w / 2, box_y + 33, title)
+        draw_centered_lines(c, body, bx + 3, box_y + 5, box_w - 6, 22,
+                            font_size=6.3, color=MUTED)
+        if idx < 3:
+            arrow(c, bx + box_w + 2, box_y + box_h / 2,
+                  bx + box_w + gap - 2, box_y + box_h / 2)
+    c.setFont("CJK", 7)
+    c.setFillColor(MUTED)
+    c.drawString(x + 12, y + 25, "人确认关键归属与教学判断；系统保存事实、复算成绩并形成反馈草稿。")
+    c.setFont("CJK-Bold", 7.5)
+    c.setFillColor(TEAL)
+    c.drawRightString(x + w - 12, y + 25, "反馈回到下一次教学任务")
 
 
-def bullet(text):
-    return P(f"• {text}", "BodyCN")
+def mysql_panel(c, x, y, w, h):
+    rounded_box(c, x, y, w, h, fill=LIGHT_BLUE, stroke=BLUE, radius=7, line_width=1.2)
+    c.setFont("CJK-Bold", 13)
+    c.setFillColor(NAVY)
+    c.drawString(x + 14, y + h - 23, "MySQL 8.4 统一数据基座")
+    c.setFont("CJK", 7.2)
+    c.setFillColor(MUTED)
+    c.drawRightString(x + w - 14, y + h - 21, "inst_cyana · 版本2.0.1")
+
+    rounded_box(c, x + 14, y + h - 52, w - 28, 20, fill=WHITE, stroke=LINE)
+    c.setFont("CJK-Bold", 8.2)
+    c.setFillColor(BLUE)
+    c.drawCentredString(x + w / 2, y + h - 45, "10张业务表 + 1张结构治理表 · 一机构一库")
+
+    names = ["人员", "班级", "任务", "提交", "答案", "反馈"]
+    gap = 12
+    chain_x = x + 14
+    chain_w = w - 28
+    box_w = (chain_w - gap * 5) / 6
+    box_y = y + 48
+    for idx, name in enumerate(names):
+        bx = chain_x + idx * (box_w + gap)
+        rounded_box(c, bx, box_y, box_w, 34, fill=WHITE, stroke=BLUE)
+        c.setFont("CJK-Bold", 7.2)
+        c.setFillColor(NAVY)
+        c.drawCentredString(bx + box_w / 2, box_y + 20, name)
+        table_name = ["person", "group", "activity", "submission", "answer", "feedback"][idx]
+        c.setFont("CJK", 5.6)
+        c.setFillColor(MUTED)
+        c.drawCentredString(bx + box_w / 2, box_y + 9, table_name)
+        if idx < 5:
+            arrow(c, bx + box_w + 1, box_y + 17, bx + box_w + gap - 1, box_y + 17)
+
+    c.setFont("CJK", 6.8)
+    c.setFillColor(MUTED)
+    c.drawString(x + 14, y + 26, "内容与题目：content_item / activity_item")
+    c.drawRightString(x + w - 14, y + 26, "人员关系与成员：person_relation / group_member")
 
 
-def header_footer(canvas, doc):
-    canvas.saveState()
-    width, height = A4
-    canvas.setStrokeColor(LINE)
-    canvas.setLineWidth(0.5)
-    canvas.line(20 * mm, height - 15 * mm, width - 20 * mm, height - 15 * mm)
-    canvas.setFont("CJK", 7.5)
-    canvas.setFillColor(MUTED)
-    canvas.drawString(20 * mm, height - 11.5 * mm, "CYANA  |  教学-反馈数据基座采纳建议")
-    canvas.drawRightString(width - 20 * mm, 10 * mm, f"{doc.page}")
-    canvas.restoreState()
+def student_card(c, x, y, w, h, name, score, finding, action, fill):
+    rounded_box(c, x, y, w, h, fill=fill, stroke=LINE)
+    c.setFont("CJK-Bold", 9)
+    c.setFillColor(NAVY)
+    c.drawString(x + 9, y + h - 17, name)
+    c.setFont("CJK-Bold", 11)
+    c.setFillColor(BLUE)
+    c.drawRightString(x + w - 9, y + h - 17, score)
+    draw_left_lines(c, f"发现：{finding}", x + 9, y + h - 34, w - 18,
+                    font_size=6.7, color=INK, leading=10, max_lines=2)
+    draw_left_lines(c, f"下一步：{action}", x + 9, y + 21, w - 18,
+                    font_size=6.7, color=MUTED, leading=10, max_lines=2)
 
 
-def build_story():
-    story = []
+def evidence_panel(c, x, y, w, h):
+    rounded_box(c, x, y, w, h, fill=PALE_BLUE, stroke=LINE)
+    section_label(c, "03", "三名学生验证：反馈可追溯到逐题事实", x + 12, y + h - 20)
+    gap = 10
+    cards_x = x + 12
+    cards_w = w - 24
+    card_w = (cards_w - gap * 2) / 3
+    card_y = y + 36
+    card_h = 70
+    student_card(c, cards_x, card_y, card_w, card_h, "安安（模拟）", "100分",
+                 "4/4，显性信息定位准确", "遮图复述关系链", LIGHT_TEAL)
+    student_card(c, cards_x + card_w + gap, card_y, card_w, card_h, "贝贝（模拟）", "75分",
+                 "第2题未回到dog原句", "圈主语，再划原文宾语", LIGHT_BLUE)
+    student_card(c, cards_x + (card_w + gap) * 2, card_y, card_w, card_h, "辰辰（模拟）", "25分",
+                 "主客体混淆", "画“谁看到谁”的箭头", LIGHT_GOLD)
+    c.setFont("CJK-Bold", 7.2)
+    c.setFillColor(TEAL)
+    c.drawString(x + 12, y + 16, "验证结果：3次提交 · 12条逐题答案 · 3份针对性反馈 · 总分与逐题汇总差值全部为0")
 
-    story += [
-        Spacer(1, 18 * mm),
-        P("Cyana 教学-反馈数据基座", "CoverTitle"),
-        P("从机构流程理解，到最小数据抽象，再到三名学生反馈验证", "CoverSub"),
-        callout("建议用一个班级开展两周试点：先把作业、作答、错题和反馈跑通，再依据真实效果决定扩展。"),
-        Spacer(1, 12 * mm),
-        P("我们对机构整体运作的理解", "H1CN"),
-        P("英语培训机构不是六套孤立工作，而是一个从获客、教学到口碑回流的闭环。", "BodyCN"),
-        flow_row(
-            [
-                box("市场", "定位·渠道·获客", width=22),
-                box("营销", "咨询·试听·报名", width=22),
-                box("教研", "课程·教材·题目", width=22),
-                box("教学", "授课·作业·指导", LIGHT_TEAL, 22),
-                box("测评", "作答·评分·错因", LIGHT_TEAL, 22),
-                box("反馈", "学情·行动·沟通", LIGHT_GOLD, 22),
-            ],
-            widths=[22, 22, 22, 22, 22, 22],
-        ),
-        Spacer(1, 5 * mm),
-        P("反馈推动教学调整，测评薄弱点回流教研，续费、转介绍和口碑再回到市场。", "SmallCN"),
-        Spacer(1, 10 * mm),
-        data_table(
-            ["本阶段聚焦", "原因", "暂不扩张"],
-            [["教学 + 反馈", "最接近学习结果，也是教师、家长和负责人最容易感知价值的环节", "不一次替代CRM、财务或完整排课系统"]],
-            [30, 86, 50],
-        ),
-        PageBreak(),
+
+def decision_panel(c, x, y, w, h):
+    rounded_box(c, x, y, w, h, fill=LIGHT_GOLD, stroke=GOLD, radius=6, line_width=1.1)
+    section_label(c, "04", "负责人需要认可的决策", x + 12, y + h - 20)
+    bullets = [
+        "认可当前MySQL最小结构作为统一数据底座。",
+        "未来新增字段或表必须通过迁移、验证和版本登记。",
+        "只有真实业务需求触发扩展，不按临时表格随意生长。",
     ]
-
-    story += [
-        P("01  教学-反馈的四个实际子流程", "H1CN"),
-        P("教学和反馈之间，由测评分析能力完成连接。这里的“收集反馈”指收回学生作答、教师批注和必要的课堂观察。", "BodyCN"),
-        Spacer(1, 4 * mm),
-        flow_row(
-            [
-                box("1. 布置作业", "选材料与题目<br/>确认班级、截止时间和分值", LIGHT_TEAL, 35),
-                box("2. 收集反馈", "收回PDF、照片或答案<br/>确认学生、任务和提交时间", LIGHT_TEAL, 35),
-                box("3. 分析错题", "逐题比对<br/>计算得分<br/>识别错因与模式", LIGHT_BLUE, 35),
-                box("4. 整理反馈", "表现<br/>问题<br/>建议<br/>跟进", LIGHT_GOLD, 35),
-            ],
-            widths=[35, 35, 35, 35],
-        ),
-        Spacer(1, 7 * mm),
-        callout("最终形成的不是一段笼统评价，而是可以回到下一次教学任务的闭环：表现 - 问题 - 建议 - 跟进。", LIGHT_TEAL, TEAL),
-        Spacer(1, 8 * mm),
-        P("人与系统如何配合", "H2CN"),
-        data_table(
-            ["角色", "负责内容", "边界"],
-            [
-                ["教师 / 负责人", "确认学生身份、正式成绩、教学判断和对外反馈", "关键归属不由系统猜测"],
-                ["数据基座", "保存原始事实、关联任务、复算成绩、追踪反馈", "不替代教师判断"],
-                ["AI协作", "识别材料、整理错题、形成反馈草稿、主动询问缺失信息", "未经确认不写入关键事实"],
-            ],
-            [30, 76, 60],
-        ),
-        Spacer(1, 8 * mm),
-        P("协作工作流", "H2CN"),
-        flow_row(
-            [
-                box("识别材料", "提取文章、题目和答案", width=26),
-                box("补齐信息", "询问学生、班级和日期", width=26),
-                box("事务写入", "用写账号登记", width=26),
-                box("独立验证", "用读账号复核", width=26),
-                box("输出反馈", "针对错题给行动建议", width=26),
-            ],
-            widths=[26, 26, 26, 26, 26],
-        ),
-        PageBreak(),
-    ]
-
-    story += [
-        P("02  把复杂流程抽象成最小数据结构", "H1CN"),
-        P("抽象原则不是“每个动作建一张表”，而是识别稳定的业务事实：谁、在哪个学习组织、使用什么内容、完成什么任务、提交什么答案、得到什么反馈。", "BodyCN"),
-        Spacer(1, 3 * mm),
-        data_table(
-            ["机构业务语言", "数据抽象", "一行代表什么"],
-            [
-                ["学生、家长、教师", "person / person_relation", "一个人员；一条人员关系"],
-                ["课程、班级、成员", "learning_group / group_member", "一个学习组织；一次加入关系"],
-                ["PDF、文章、题目", "content_item", "一个可复用内容对象"],
-                ["作业、测评、题目顺序", "activity / activity_item", "一次任务；任务中的一道题"],
-                ["学生提交、逐题答案", "submission / answer", "一次提交；对一道题的最终回答"],
-                ["诊断、建议、跟进", "feedback", "针对一次提交的一次反馈"],
-            ],
-            [48, 58, 60],
-        ),
-        Spacer(1, 7 * mm),
-        P("最小ER主链", "H2CN"),
-        flow_row(
-            [
-                box("人员", "person", width=22),
-                box("班级", "learning_group", width=22),
-                box("任务", "activity", width=22),
-                box("提交", "submission", width=22),
-                box("答案", "answer", width=22),
-                box("反馈", "feedback", width=22),
-            ],
-            widths=[22, 22, 22, 22, 22, 22],
-        ),
-        Spacer(1, 4 * mm),
-        P("教学内容 content_item 通过 activity_item 进入任务；人员通过 group_member 加入课程或班级。", "SmallCN"),
-        Spacer(1, 8 * mm),
-        P("为什么10张表足够承载未来信息", "H2CN"),
-        data_table(
-            ["设计选择", "方法", "效果"],
-            [
-                ["稳定关系", "主键、外键、状态、时间、顺序和分值使用标准字段", "可查询、可约束、可统计"],
-                ["变化较大的属性", "选项、量规、联系方式和低频属性使用JSON", "避免过早拆表，保留扩展空间"],
-                ["延迟拆分", "只有出现独立生命周期、复用或明确指标需求时才新增表", "控制维护成本"],
-                ["一机构一库", "Cyana使用inst_cyana，库内不重复institution_id", "边界清晰，后续机构可复制同一结构"],
-            ],
-            [36, 78, 52],
-        ),
-        PageBreak(),
-    ]
-
-    story += [
-        P("03  不是只画ER图，而是完成工程验证", "H1CN"),
-        P("模型通过六层证据链验证，从业务理解一直落到真实数据库读写。", "BodyCN"),
-        Spacer(1, 4 * mm),
-        flow_row(
-            [
-                box("业务闭环", "流程是否完整", width=22),
-                box("数据粒度", "一行一个事实", width=22),
-                box("ER关系", "主外键与基数", width=22),
-                box("完整性", "唯一性与检查", width=22),
-                box("指标血缘", "成绩能否复算", width=22),
-                box("真实模拟", "写入后独立读取", width=22),
-            ],
-            widths=[22, 22, 22, 22, 22, 22],
-        ),
-        Spacer(1, 8 * mm),
-        data_table(
-            ["验证项", "实际证据", "结论"],
-            [
-                ["数据库", "MySQL 8.4.11，Cyana独立数据库inst_cyana", "可实际运行"],
-                ["结构", "10张业务表 + 1张schema_version治理表", "满足当前最小闭环"],
-                ["权限", "读账号只能查询；写账号只能写业务表，不能DDL", "日常操作与结构治理隔离"],
-                ["材料", "Level D阅读材料“Look Out!”：4题，答案B/A/B/A", "真实材料可以结构化"],
-                ["模拟", "3名学生、3次提交、12条逐题答案、3份反馈", "端到端链路完整"],
-                ["计分", "3份总分与逐题汇总差值均为0", "分数可以从原始事实复算"],
-            ],
-            [34, 88, 44],
-        ),
-        Spacer(1, 7 * mm),
-        P("验证带来的结构修正", "H2CN"),
-        bullet("发现MySQL 8.4对answer标识符的处理问题，已通过2.0.1迁移修复。"),
-        bullet("发现评分人外键动作与检查约束冲突，改为保留审计记录的ON DELETE RESTRICT。"),
-        bullet("发现SOURCE遇错后仍可能继续登记版本，改为只有表和视图都存在时才记录成功版本。"),
-        Spacer(1, 4 * mm),
-        callout("这些问题是在真实建库、授权和写入过程中发现并修复的，证明方案不是停留在概念设计。", LIGHT_BLUE, BLUE),
-        PageBreak(),
-    ]
-
-    story += [
-        P("04  三名学生的模拟反馈输出", "H1CN"),
-        P("同一份“Look Out!”阅读任务，4题、总分100。不同作答模式必须产生不同诊断和下一步行动。", "BodyCN"),
-        Spacer(1, 4 * mm),
-        data_table(
-            ["学生", "结果", "表现", "问题", "建议与跟进"],
-            [
-                ["安安（模拟）", "4/4<br/>100分", "显性信息定位准确，动物关系链清楚", "本次无明显错误", "遮住图片复述关系链；再做1篇无图片提示阅读"],
-                ["贝贝（模拟）", "3/4<br/>75分", "大部分细节能正确定位", "第2题未回到dog原句，相似选项下凭印象作答", "圈出主语dog，回原文划出宾语cat；补做2组主宾配对题"],
-                ["辰辰（模拟）", "1/4<br/>25分", "第4题能正确定位“蜜蜂看到狗”", "前3题主客体混淆，部分选择脱离原文", "逐句画“谁看到谁”的箭头；教师带读后完成4道同结构题"],
-            ],
-            [25, 18, 39, 40, 44],
-        ),
-        Spacer(1, 8 * mm),
-        P("从原始事实到反馈", "H2CN"),
-        flow_row(
-            [
-                box("学生作答", "每题选择", width=35),
-                box("逐题评分", "正确性与得分", width=35),
-                box("错误模式", "错因代码与教师点评", width=35),
-                box("反馈内容", "表现·问题·建议·跟进", width=35),
-            ],
-            widths=[35, 35, 35, 35],
-        ),
-        Spacer(1, 8 * mm),
-        callout("负责人看到的不只是“AI写了三段话”，而是每段反馈都能回到具体题目、答案、得分和错因。", LIGHT_GOLD, GOLD),
-        Spacer(1, 8 * mm),
-        P("长期积累后可以回答", "H2CN"),
-        data_table(
-            ["个人", "班级", "材料与教研"],
-            [["学生在哪类题上持续进步或反复出错", "哪些错因是班级共性，应该如何调整教学", "哪些材料过难、过易或最能暴露真实问题"]],
-            [55, 56, 55],
-        ),
-        PageBreak(),
-    ]
-
-    story += [
-        P("05  低风险试点与采纳决策", "H1CN"),
-        P("先用最小范围验证教师是否省时、反馈是否更具体、数据是否完整，不立即全机构铺开。", "BodyCN"),
-        Spacer(1, 4 * mm),
-        data_table(
-            ["阶段", "动作", "判断标准"],
-            [
-                ["第1周", "选择1名教师、1个班、3至10名学生，登记2次作业", "材料和答题完整登记；教师能理解反馈"],
-                ["第2周", "持续登记，由教师确认和修改反馈", "记录处理耗时、教师修改率和遗漏信息"],
-                ["复盘", "对比原流程与试点流程", "反馈更及时、更具体，教师负担下降"],
-            ],
-            [24, 82, 60],
-        ),
-        Spacer(1, 8 * mm),
-        P("机构可以获得什么", "H2CN"),
-        bullet("教师：减少重复整理，反馈直接指向错题和行动。"),
-        bullet("教研：识别高频错因、材料难度和需要调整的教学内容。"),
-        bullet("负责人：追踪作业完成、评分一致性和反馈及时性。"),
-        bullet("家长：收到“表现 - 问题 - 建议 - 跟进”，而不只是分数。"),
-        Spacer(1, 5 * mm),
-        P("边界与风险控制", "H2CN"),
-        bullet("AI不擅自判断学生身份、班级和正式成绩；缺少关键归属时主动请教师补充。"),
-        bullet("读写账号与结构管理账号分离，结构变更必须执行迁移并验证。"),
-        bullet("原始材料、识别结果、教师确认和对外反馈保持可追溯。"),
-        bullet("当前优先解决教学反馈闭环，不宣称替代完整经营系统。"),
-        Spacer(1, 6 * mm),
-        callout("需要负责人批准：指定试点教师和班级，允许使用经授权或脱敏的学生作业，两周后依据数据质量、教师耗时和反馈价值决定是否扩大。", LIGHT_TEAL, TEAL),
-        Spacer(1, 8 * mm),
-        P("采纳核心", "H2CN"),
-        P("先理解流程，再把复杂流程抽象成可验证的数据事实；先用最小结构跑通真实闭环，再由真实需求推动扩展。", "Callout"),
-        Spacer(1, 10 * mm),
-        HRFlowable(width="100%", thickness=0.6, color=LINE),
-        Spacer(1, 3 * mm),
-        P("版本：Cyana最小数据基座 2.0.1  |  形成日期：2026-08-03  |  模拟数据使用SIM_前缀", "SmallCN"),
-    ]
-    return story
+    cursor = y + h - 43
+    for idx, text in enumerate(bullets, start=1):
+        c.setFillColor(GOLD)
+        c.circle(x + 18, cursor + 2, 7, fill=1, stroke=0)
+        c.setFillColor(WHITE)
+        c.setFont("CJK-Bold", 7)
+        c.drawCentredString(x + 18, cursor, str(idx))
+        draw_left_lines(c, text, x + 31, cursor + 5, w - 43,
+                        font_name="CJK-Bold", font_size=7.1, color=NAVY,
+                        leading=10, max_lines=2)
+        cursor -= 25
+    rounded_box(c, x + 12, y + 8, w - 24, 25, fill=WHITE, stroke=GOLD)
+    draw_centered_lines(c, "先稳住底座，再按规则扩展：数据越积越有序，而不是越做越乱。",
+                        x + 16, y + 8, w - 32, 25,
+                        font_name="CJK-Bold", font_size=8.2, color=NAVY)
 
 
-def main():
+def build_pdf():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    doc = BaseDocTemplate(
-        str(OUTPUT),
-        pagesize=A4,
-        leftMargin=20 * mm,
-        rightMargin=20 * mm,
-        topMargin=22 * mm,
-        bottomMargin=17 * mm,
-        title="Cyana 教学-反馈数据基座采纳建议",
-        author="Cyana 数据基座项目",
-        subject="最小数据结构、ER验证和三名学生模拟反馈",
+    page_size = landscape(A4)
+    c = canvas.Canvas(str(OUTPUT), pagesize=page_size)
+    c.setTitle("Cyana MySQL教学反馈数据基座采纳建议")
+    c.setAuthor("Cyana 数据基座项目")
+    c.setSubject("一页说明机构流程、最小数据结构、模拟验证与采纳决策")
+
+    width, height = page_size
+    margin = 10 * mm
+
+    c.setFont("CJK-Bold", 22)
+    c.setFillColor(NAVY)
+    c.drawString(margin, height - 22 * mm, "Cyana 教学-反馈数据基座｜一页采纳建议")
+    c.setFont("CJK", 8.5)
+    c.setFillColor(MUTED)
+    c.drawRightString(width - margin, height - 20.5 * mm,
+                      "目标：认可当前MySQL结构，后续有序扩展")
+
+    rounded_box(c, margin, height - 42 * mm, width - 2 * margin, 14 * mm,
+                fill=LIGHT_GOLD, stroke=GOLD, radius=5, line_width=1)
+    draw_centered_lines(
+        c,
+        "建议：以当前10张业务表 + 1张治理表作为Cyana统一数据基座。先跑通教学反馈闭环，未来通过迁移和验证扩展，避免数据失控。",
+        margin + 8, height - 42 * mm, width - 2 * margin - 16, 14 * mm,
+        font_name="CJK-Bold", font_size=10, color=NAVY,
     )
-    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="main")
-    doc.addPageTemplates([PageTemplate(id="standard", frames=[frame], onPage=header_footer)])
-    doc.build(build_story())
+
+    section_label(c, "00", "我们理解机构六大环节，并聚焦教学到反馈的闭环",
+                  margin, height - 49 * mm)
+    stage_flow(c, margin, height - 70 * mm, width - 2 * margin)
+
+    gap = 6 * mm
+    middle_y = height - 126 * mm
+    middle_h = 47 * mm
+    left_w = 139 * mm
+    workflow_panel(c, margin, middle_y, left_w, middle_h)
+    mysql_panel(c, margin + left_w + gap, middle_y,
+                width - 2 * margin - left_w - gap, middle_h)
+
+    bottom_y = 17 * mm
+    bottom_h = 50 * mm
+    evidence_w = 175 * mm
+    evidence_panel(c, margin, bottom_y, evidence_w, bottom_h)
+    decision_panel(c, margin + evidence_w + gap, bottom_y,
+                   width - 2 * margin - evidence_w - gap, bottom_h)
+
+    c.setStrokeColor(LINE)
+    c.line(margin, 11 * mm, width - margin, 11 * mm)
+    c.setFont("CJK", 6.5)
+    c.setFillColor(MUTED)
+    c.drawString(margin, 7 * mm, "MySQL 8.4.11 · inst_cyana · schema 2.0.1 · 模拟数据使用SIM_前缀")
+    c.drawRightString(width - margin, 7 * mm, "建议试点：1名教师 · 1个班 · 3至10名学生 · 2周")
+
+    c.showPage()
+    c.save()
     print(OUTPUT)
 
 
 if __name__ == "__main__":
-    main()
+    build_pdf()
