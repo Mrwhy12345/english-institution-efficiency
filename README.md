@@ -178,3 +178,7 @@ flowchart LR
 - 责任人与更新频率
 - 权限和隐私要求
 - 核心指标计算口径
+
+## 十、设计文档
+
+- [测评与反馈最小数据模型](docs/assessment-feedback-minimal-data-model.md)：使用最小化建表原则、ER 关系图、字段数据字典和指标血缘矩阵，论证测评与反馈的数据结构。
