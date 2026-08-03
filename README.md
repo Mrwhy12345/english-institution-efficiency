@@ -181,6 +181,7 @@ flowchart LR
 
 ## 十、设计文档
 
+- [GitHub协作与发布规范](docs/github-collaboration-workflow.md)：固定提交范围、安全预检、验证、提交、推送、PR和接力方法。
 - [Cyana最小教学数据基座：采纳建议](docs/cyana-data-foundation-adoption-brief.md)：面向机构负责人的一页式方案摘要、验证证据和两周试点建议。
 - [Cyana教学-反馈数据基座采纳建议PDF](output/pdf/cyana-data-foundation-adoption-brief.pdf)：适合向机构负责人展示和转发的六页正式版本。
 - [2026-08-03工作小结与接力说明](docs/2026-08-03-work-handoff.md)：记录数据库现状、ER验证方法、模拟结果、修复记录和后续操作入口。
